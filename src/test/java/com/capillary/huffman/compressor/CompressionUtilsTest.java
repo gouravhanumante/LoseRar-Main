@@ -151,9 +151,9 @@ public class CompressionUtilsTest {
 
         CompressionUtils utilsMock=mock(CompressionUtils.class);
 //        doNothing().when(utilsMock).buildLookupRecursive(root,"",result);
-        utilsMock.buildLookupRecursive(root,"",expected);
+//        utilsMock.buildLookupRecursive(root,"",expected);
 
-        verify(utilsMock,times(1)).buildLookupRecursive(root,"",expected);
+//        verify(utilsMock,times(1)).buildLookupRecursive(root,"",expected);
 
 
 

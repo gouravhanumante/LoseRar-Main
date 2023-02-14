@@ -6,6 +6,15 @@ import java.io.ObjectInputStream;
 import java.io.OutputStream;
 import java.util.Map;
 public class HuffmanDecompressionImpl implements IDecompressor{
+    IDecompressionUtils util;
+
+    public HuffmanDecompressionImpl(IDecompressionUtils util) {
+        this.util = util;
+    }
+    public  HuffmanDecompressionImpl(){
+        this.util=new DecompressionUtilsImpl();
+    }
+
     @Override
     public void decompress(String source, String destination) {
         try {
@@ -27,7 +36,11 @@ public class HuffmanDecompressionImpl implements IDecompressor{
             Map<Byte,String> lookupMap= (Map<Byte, String>) objectInputStream.readObject();
             byte counter=(byte) objectInputStream.readObject();
 
-            byte[] finalRes=getDecompressedData(huffmanBytes,lookupMap,counter);
+
+
+//            byte[] finalRes=getDecompressedData(huffmanBytes,lookupMap,counter);
+
+            byte[] finalRes=util.decompress(huffmanBytes,lookupMap,counter);
 
             oStream.write(finalRes);
 
@@ -39,9 +52,9 @@ public class HuffmanDecompressionImpl implements IDecompressor{
             e.printStackTrace();
         }
     }
-    public byte[] getDecompressedData(byte[] huffmanBytes, Map<Byte, String> lookupMap, byte counter) {
-        IDecompressionUtils util=new DecompressionUtilsImpl();
-        byte[] decodedData=util.decompress(huffmanBytes,lookupMap,counter);
-        return decodedData;
-    }
+//    public byte[] getDecompressedData(byte[] huffmanBytes, Map<Byte, String> lookupMap, byte counter) {
+//        IDecompressionUtils util=new DecompressionUtilsImpl();
+//        byte[] decodedData=util.decompress(huffmanBytes,lookupMap,counter);
+//        return decodedData;
+//    }
 }

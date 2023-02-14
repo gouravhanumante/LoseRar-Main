@@ -7,14 +7,14 @@ public class Main {
         ILoseRar loseRar=new HuffmanLoseRarImpl();
 //        System.out.println(System.currentTimeMillis());
         long val1=System.currentTimeMillis();
-        loseRar.compression("/home/gauravhanumante/Files/temp.txt",
-                "/home/gauravhanumante/Files/c.txt");
+        loseRar.compression("/home/gauravhanumante/Files2/tempp.txt",
+                "/home/gauravhanumante/Files/compressedTest.txt");
 
-//        System.out.println(String.format("%8s", Integer.toBinaryString(((byte)1) & 0xFF)).replace(' ', '0'));
+
         long val2=System.currentTimeMillis();
 
-        loseRar.decompression("/home/gauravhanumante/Files/c.txt",
-                "/home/gauravhanumante/Files/resultmain.txt");
+        loseRar.decompression("/home/gauravhanumante/Files/compressedTest.txt",
+                "/home/gauravhanumante/Files2/resultmain.txt");
 
         long val3=System.currentTimeMillis();
 

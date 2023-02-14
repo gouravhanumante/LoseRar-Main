@@ -14,11 +14,23 @@ public class HuffmanCompressionImpl implements ICompressor{
     Container huffmanContainer;
 
 
+    //
+    IReadAndWrite rw;
+    ICompressionUtils utils;
+
+
+    public HuffmanCompressionImpl(IReadAndWrite rw,ICompressionUtils utils) {
+        this.rw=rw;
+        this.utils=utils;
+    }
+    public HuffmanCompressionImpl() {
+        this.rw=new ReadAndWriteImpl();
+        this.utils=new CompressionUtils();
+    }
+
 
     @Override
     public void compress(byte[] b, String destination) {
-        IReadAndWrite rw=new ReadAndWriteImpl();
-        ICompressionUtils utils=new CompressionUtils();
 
 
         if (b.length==0){

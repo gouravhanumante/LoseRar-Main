@@ -3,9 +3,12 @@ package com.capillary.huffman.compressor;
 import com.capillary.huffman.mydefines.Container;
 import com.capillary.huffman.mydefines.Node;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CompressionUtils implements ICompressionUtils{
+
     @Override
     public Node createHuffmanTree(byte[] fileData) {
         ITreeCreationUtils utils=new TreeCreationUtils();
@@ -27,8 +30,7 @@ public class CompressionUtils implements ICompressionUtils{
             }else lookupMap.put(root.data,s);
         }
     }
-
-
+//
 //    01010101 0
     @Override
     public Container createCompressedArray(byte[] fileData, Map<Byte, String> lookupMap) {
@@ -63,6 +65,8 @@ public class CompressionUtils implements ICompressionUtils{
             huffCodeBytes[idx] = (byte) Integer.parseInt(s , 2);
             idx++;
         }
+        System.out.println(Arrays.toString(huffCodeBytes));
+        System.out.println(counter);
         return new Container(huffCodeBytes, (byte) counter);
     }
 }
