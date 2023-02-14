@@ -23,8 +23,6 @@ public class HuffmanCompressionImplTest {
         String path="/home/gauravhanumante/Files/TestFiles/you.txt";
         Map<Byte,String > mp=new HashMap<>();
 
-        doReturn()
-
 
         hc.compress(b,path);
 

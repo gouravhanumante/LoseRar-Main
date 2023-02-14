@@ -23,6 +23,7 @@ public class HuffmanDecompressionImpl implements IDecompressor{
                 iStream.close();
                 return;
             }
+
             Map<Byte,String> lookupMap= (Map<Byte, String>) objectInputStream.readObject();
             byte counter=(byte) objectInputStream.readObject();
 
