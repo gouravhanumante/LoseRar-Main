@@ -1,12 +1,9 @@
 import com.capillary.huffman.compressor.HuffmanCompressionImpl;
-import com.capillary.huffman.compressor.ICompressor;
-import com.capillary.huffman.compressor.IReadAndWrite;
-import com.capillary.huffman.compressor.ReadAndWriteImpl;
+import com.capillary.huffman.compressor.ReadDataImpl;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class HuffmanLoseRarImplTest {
@@ -15,7 +12,7 @@ public class HuffmanLoseRarImplTest {
 
     @Test
     public void compression() {
-        ReadAndWriteImpl rw=mock(ReadAndWriteImpl.class);
+        ReadDataImpl rw=mock(ReadDataImpl.class);
         HuffmanCompressionImpl compressor=mock(HuffmanCompressionImpl.class);
 
         ILoseRar rar=new HuffmanLoseRarImpl(rw,compressor);

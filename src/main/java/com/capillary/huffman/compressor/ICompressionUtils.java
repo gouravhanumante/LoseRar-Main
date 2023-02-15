@@ -1,6 +1,6 @@
 package com.capillary.huffman.compressor;
 
-import com.capillary.huffman.mydefines.Container;
+import com.capillary.huffman.mydefines.HuffmanData;
 import com.capillary.huffman.mydefines.Node;
 
 import java.util.Map;
@@ -9,9 +9,9 @@ public interface ICompressionUtils {
 
     Node createHuffmanTree(byte[] fileData);
 
-    void buildLookupRecursive(Node root,String s,Map<Byte,String> lookupMap);
+    Map<Byte,String> buildLookupRecursive(Node root);
 
-    Container createCompressedArray(byte[] fileData, Map<Byte, String> lookupMap);
+    HuffmanData createCompressedArray(byte[] fileData, Map<Byte, String> lookupMap);
 
 
 }

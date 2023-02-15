@@ -1,30 +1,30 @@
 package com.capillary.huffman.compressor;
 
-import com.capillary.huffman.mydefines.Container;
+import com.capillary.huffman.mydefines.HuffmanData;
 import com.capillary.huffman.mydefines.Node;
 
-import java.util.Arrays;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class HuffmanCompressionImpl implements ICompressor{
 
 
-    private Map<Byte,String> lookupMap=new HashMap<>();
-    Container huffmanContainer;
-
 
     //
-    IReadAndWrite rw;
+    IReadData rw;
     ICompressionUtils utils;
 
 
-    public HuffmanCompressionImpl(IReadAndWrite rw,ICompressionUtils utils) {
+    public HuffmanCompressionImpl(IReadData rw, ICompressionUtils utils) {
         this.rw=rw;
         this.utils=utils;
     }
     public HuffmanCompressionImpl() {
-        this.rw=new ReadAndWriteImpl();
+        this.rw=new ReadDataImpl();
         this.utils=new CompressionUtils();
     }
 
@@ -32,22 +32,62 @@ public class HuffmanCompressionImpl implements ICompressor{
     @Override
     public void compress(byte[] b, String destination) {
 
+        HuffmanData huffmanData;
 
+        Map<Byte,String> huffmanCodes=new HashMap<>();
         if (b.length==0){
-            huffmanContainer=new Container(b, (byte) 0);
-            rw.write(destination,huffmanContainer,lookupMap);
+            huffmanData =new HuffmanData(b, (byte) 0);
+            write(destination, huffmanData,huffmanCodes);
             return;
         }
 
         Node root=utils.createHuffmanTree(b);
 
-        utils.buildLookupRecursive(root,"",lookupMap);
+        huffmanCodes=utils.buildLookupRecursive(root);
 
-        huffmanContainer=utils.createCompressedArray(b,lookupMap);
+        huffmanData =utils.createCompressedArray(b,huffmanCodes);
 
-        rw.write(destination,huffmanContainer,lookupMap);
+        int size=huffmanData.getHuffmanByte().length;
+        System.out.println("size " +size);
+        size=size*8;
+
+        long div=new File("/home/gauravhanumante/Files2/input.txt").length();
+        System.out.println("msg"+(float) size/div);
+
+
+//        rw.write(destination, huffmanData,lookupMap);
+        write(destination,huffmanData,huffmanCodes);
     }
 
 
+    public void write(String destination, HuffmanData huffmanData, Map<Byte,String> lookupMap) {
+        try {
+            OutputStream oStream = new FileOutputStream(destination);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(oStream);
 
+            if (huffmanData.getHuffmanByte().length == 0) {
+
+                byte[] x = new byte[1];
+                x[0] = -1;
+
+                objectOutputStream.writeObject(x);
+                oStream.close();
+                objectOutputStream.close();
+                return;
+            }
+
+
+            objectOutputStream.writeObject(huffmanData.getHuffmanByte());
+            objectOutputStream.writeObject(lookupMap);
+            objectOutputStream.writeObject(huffmanData.getCounter());
+
+            oStream.close();
+            objectOutputStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

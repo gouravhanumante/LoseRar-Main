@@ -1,20 +1,20 @@
 import com.capillary.huffman.compressor.HuffmanCompressionImpl;
 import com.capillary.huffman.compressor.ICompressor;
-import com.capillary.huffman.compressor.IReadAndWrite;
-import com.capillary.huffman.compressor.ReadAndWriteImpl;
+import com.capillary.huffman.compressor.IReadData;
+import com.capillary.huffman.compressor.ReadDataImpl;
 import com.capillary.huffman.decompressor.HuffmanDecompressionImpl;
 import com.capillary.huffman.decompressor.IDecompressor;
 
 public class HuffmanLoseRarImpl implements ILoseRar{
-    ReadAndWriteImpl rw;
-    HuffmanCompressionImpl hc;
+    IReadData rw;
+    ICompressor hc;
 
-    public HuffmanLoseRarImpl(ReadAndWriteImpl rw,HuffmanCompressionImpl hc) {
+    public HuffmanLoseRarImpl(ReadDataImpl rw, HuffmanCompressionImpl hc) {
         this.hc=hc;
         this.rw=rw;
     }
     public HuffmanLoseRarImpl(){
-        rw=new ReadAndWriteImpl();
+        rw=new ReadDataImpl();
         hc=new HuffmanCompressionImpl();
 
     }

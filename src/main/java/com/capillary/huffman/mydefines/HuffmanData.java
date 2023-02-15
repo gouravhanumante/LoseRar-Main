@@ -1,9 +1,9 @@
 package com.capillary.huffman.mydefines;
 
-public class Container {
+public class HuffmanData {
     private byte [] huffmanByte;
     private byte counter;
-    public Container(byte[] huffmanByte,byte counter){
+    public HuffmanData(byte[] huffmanByte, byte counter){
         this.setHuffmanByte(huffmanByte);
         this.setCounter(counter);
     }

@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 public class ReadAndWriteImplTest {
 
-    IReadAndWrite rw=new ReadAndWriteImpl();
+    IReadData rw=new ReadDataImpl();
     @Test
     public void read_WhenStandardInputIsProvided_ThenDesiredByteArrayShouldBeFormed() throws FileNotFoundException {
 

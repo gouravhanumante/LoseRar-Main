@@ -1,6 +1,6 @@
 package com.capillary.huffman.compressor;
 
-import com.capillary.huffman.mydefines.Container;
+import com.capillary.huffman.mydefines.HuffmanData;
 import com.capillary.huffman.mydefines.Node;
 import org.junit.Assert;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class CompressionUtilsTest {
         byte counter=0;
 
 
-        Container result=utils.createCompressedArray(fileData,mp);
+        HuffmanData result=utils.createCompressedArray(fileData,mp);
 
 
         Assert.assertArrayEquals("Check if compressed array is created!",expected,result.getHuffmanByte());
@@ -56,7 +56,7 @@ public class CompressionUtilsTest {
         expected[0]= (byte) Integer.parseInt("0101010", 2);
         int count=1;
 
-        Container result= utils.createCompressedArray(fileData,mp);
+        HuffmanData result= utils.createCompressedArray(fileData,mp);
         Assert.assertArrayEquals("Check if compressed array is created!",expected,result.getHuffmanByte());
         Assert.assertEquals(count,result.getCounter());
 
@@ -80,7 +80,7 @@ public class CompressionUtilsTest {
         byte counter=1;
 
 
-        Container result=utils.createCompressedArray(fileData,mp);
+        HuffmanData result=utils.createCompressedArray(fileData,mp);
 
 
         Assert.assertArrayEquals("Check if compressed array is created!",expected,result.getHuffmanByte());
@@ -112,7 +112,7 @@ public class CompressionUtilsTest {
         expected.put((byte) 'c',"101");
         expected.put((byte) 'b',"11");
         //
-       utils.buildLookupRecursive(root,"",result);
+       result=utils.buildLookupRecursive(root);
 
         Assert.assertEquals(expected,result);
 
@@ -126,13 +126,11 @@ public class CompressionUtilsTest {
        Map<Byte,String> expected=new HashMap<>();
        Map<Byte,String> result=new HashMap<>();
 
-
-
         Node root=new Node((byte) 'a',7);
 
         expected.put((byte) 'a',"1");
 
-       utils.buildLookupRecursive(root,"",result);
+      result= utils.buildLookupRecursive(root);
 
         Assert.assertEquals(expected,result);
     }
