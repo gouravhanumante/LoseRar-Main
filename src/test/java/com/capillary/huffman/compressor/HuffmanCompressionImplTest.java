@@ -28,7 +28,7 @@ public class HuffmanCompressionImplTest {
 
         Map<Byte,String > mp=new HashMap<>();
 
-        byte[] fileData={'a',10};
+        Byte[] fileData={'a',10};
         Node root=new Node(null,2);
         root.left=new Node((byte) 10,1);
         root.right=new Node((byte) 97,1);

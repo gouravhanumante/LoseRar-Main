@@ -9,7 +9,7 @@ public class Main {
 //        System.out.println(System.currentTimeMillis());
         long val1=System.currentTimeMillis();
 
-        loseRar.compression("/home/gauravhanumante/Files2/tempp.txt",
+        loseRar.compression("/home/gauravhanumante/Files2/wbh.txt",
                 "/home/gauravhanumante/Files2/compressedTest.txt");
 
 

@@ -21,7 +21,7 @@ public class HuffmanLoseRarImpl implements ILoseRar{
 
     @Override
     public void compression(String source, String destination) {
-        byte[] b=rw.read(source);
+        Byte[] b=rw.read(source);
         hc.compress(b,destination);
     }
 

@@ -6,7 +6,10 @@ import java.util.Map;
 
 public interface ITreeCreationUtils {
 
-    Map<Byte,Integer> createFrequencyMap(byte[] fileData);
+     <T> Map<Byte,Integer> createFrequencyMap(T[] fileData);
 
-    Node createTreeUsingMinHeap(Map<Byte,Integer> mp);
+
+//    Map<Byte,Integer> createFrequencyMap(ArrayList<String> words);
+
+    Node createTreeUsingMinHeap(Map<?,Integer> mp);
 }

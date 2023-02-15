@@ -3,24 +3,23 @@ package com.capillary.huffman.compressor;
 import com.capillary.huffman.mydefines.HuffmanData;
 import com.capillary.huffman.mydefines.Node;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CompressionUtils implements ICompressionUtils{
 
     @Override
-    public Node createHuffmanTree(byte[] fileData) {
+    public <Byte> Node createHuffmanTree(Byte[] fileData) {
         ITreeCreationUtils utils=new TreeCreationUtils();
 
 
-        Map<Byte,Integer> mp=utils.createFrequencyMap(fileData);
+        Map<java.lang.Byte, Integer> mp=utils.createFrequencyMap(fileData);
 
         return utils.createTreeUsingMinHeap(mp);
     }
 
     @Override
-    public Map<Byte, String> buildLookupRecursive(Node root) {
+    public Map<?, String> buildLookupRecursive(Node root) {
         Map<Byte,String> mp=new HashMap<>();
         if (root==null) return mp;
 
@@ -51,18 +50,17 @@ public class CompressionUtils implements ICompressionUtils{
 
 //
 //    01010101 0
-    @Override
-    public HuffmanData createCompressedArray(byte[] fileData, Map<Byte, String> lookupMap) {
+    public <Byte> HuffmanData createCompressedArray(Byte[] fileData, Map<?, String> lookupMap) {
 
         StringBuilder sb = new StringBuilder();
 
-        for (byte b : fileData){
+        for (Byte b : fileData){
                 sb.append(lookupMap.get(b));
         }
 
         int length=(sb.length()+7)/8;
-        byte[] huffCodeBytes = new byte[length];
-
+//        Byte[] huffCodeBytes = new Byte[length];
+        java.lang.Byte[] huffCodeBytes=new java.lang.Byte[length];
         int counter=0;
         int idx = 0;
         for (int i = 0; i < sb.length(); i += 8) {

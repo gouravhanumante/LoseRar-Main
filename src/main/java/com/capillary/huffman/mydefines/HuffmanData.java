@@ -1,18 +1,18 @@
 package com.capillary.huffman.mydefines;
 
 public class HuffmanData {
-    private byte [] huffmanByte;
+    private Byte[] huffmanByte;
     private byte counter;
-    public HuffmanData(byte[] huffmanByte, byte counter){
+    public HuffmanData(Byte[] huffmanByte, byte counter){
         this.setHuffmanByte(huffmanByte);
         this.setCounter(counter);
     }
 
-    public byte[] getHuffmanByte() {
+    public Byte[] getHuffmanByte() {
         return huffmanByte;
     }
 
-    public void setHuffmanByte(byte[] huffmanByte) {
+    public void setHuffmanByte(Byte[] huffmanByte) {
         this.huffmanByte = huffmanByte;
     }
 

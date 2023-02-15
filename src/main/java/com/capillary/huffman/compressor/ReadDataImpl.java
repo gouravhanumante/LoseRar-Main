@@ -1,21 +1,26 @@
 package com.capillary.huffman.compressor;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class ReadDataImpl implements IReadData {
 
     @Override
-    public byte[] read(String source) {
+    public Byte[] read(String source) {
         try {
             FileInputStream inStream = new FileInputStream(source);
             byte[] b = new byte[inStream.available()];
             inStream.read(b);
             inStream.close();
-            return b;
+            Byte []bb= new Byte[b.length];
+            Arrays.setAll(bb,n->b[n]);
+            return bb;
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new byte[0];//CLTAE
+        return new Byte[0];
     }
 
 

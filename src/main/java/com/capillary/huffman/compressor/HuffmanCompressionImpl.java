@@ -29,21 +29,20 @@ public class HuffmanCompressionImpl implements ICompressor{
     }
 
 
-    @Override
-    public void compress(byte[] b, String destination) {
+    public <Byte> void compress(Byte[] b, String destination) {
 
         HuffmanData huffmanData;
 
-        Map<Byte,String> huffmanCodes=new HashMap<>();
+        Map<java.lang.Byte, String> huffmanCodes=new HashMap<>();
         if (b.length==0){
-            huffmanData =new HuffmanData(b, (byte) 0);
+            huffmanData =new HuffmanData((java.lang.Byte[]) b, (byte) 0);
             write(destination, huffmanData,huffmanCodes);
             return;
         }
 
-        Node root=utils.createHuffmanTree(b);
+        Node root=utils.createHuffmanTree((java.lang.Byte[]) b);
 
-        huffmanCodes=utils.buildLookupRecursive(root);
+        huffmanCodes= (Map<java.lang.Byte, String>) utils.buildLookupRecursive(root);
 
         huffmanData =utils.createCompressedArray(b,huffmanCodes);
 
@@ -67,7 +66,7 @@ public class HuffmanCompressionImpl implements ICompressor{
 
             if (huffmanData.getHuffmanByte().length == 0) {
 
-                byte[] x = new byte[1];
+                Byte[] x = new Byte[1];
                 x[0] = -1;
 
                 objectOutputStream.writeObject(x);
