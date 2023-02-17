@@ -20,7 +20,7 @@ public class HuffmanDecompressionImpl implements IDecompressor{
             ObjectInputStream objectInputStream=new ObjectInputStream(iStream);
 
             OutputStream oStream=new FileOutputStream(destination);
-            ObjectOutputStream objectOutputStream=new ObjectOutputStream(oStream);
+//            ObjectOutputStream objectOutputStream=new ObjectOutputStream(oStream);
 
             byte[] huffmanBytes= (byte[]) objectInputStream.readObject();
 //            System.out.println(Arrays.toString(huffmanBytes));
@@ -49,7 +49,7 @@ public class HuffmanDecompressionImpl implements IDecompressor{
 
 //            byte[] finalRes=getDecompressedData(huffmanBytes,lookupMap,counter);
 
-            T[] finalRes= (T[]) util.decompress(huffmanBytes,lookupMap,counter);
+            byte[] finalRes= util.decompress(huffmanBytes,lookupMap,counter);
 
 //            System.out.println(Arrays.toString(finalRes));
 
@@ -62,8 +62,8 @@ public class HuffmanDecompressionImpl implements IDecompressor{
 //            }
 
 
-
-            objectOutputStream.writeObject(finalRes);
+            System.out.println(Arrays.toString(finalRes));
+            oStream.write(finalRes);
 //            o
 
 //            objectOutputStream.close();

@@ -17,8 +17,8 @@ public class Main {
 
 
 
-        Byte[] fileData= rw.read("/home/gauravhanumante/Files2/input.txt");
-
+//        Byte[] fileData= rw.read("/home/gauravhanumante/Files2/input.txt");
+          Byte[] fileData = rw.read("/home/sarthakjain/IdeaProjects/Files/input.txt");
 //        String arr[]=
 
         String words[]= createWordsArray(fileData);
@@ -55,7 +55,8 @@ public class Main {
 
         HuffmanCompressionImpl c=new HuffmanCompressionImpl();
 
-        c.write("/home/gauravhanumante/Files2/ir3.txt",data,huffcodes);
+        c.write("/home/sarthakjain/IdeaProjects/Files/compressed.txt",data,huffcodes);
+
 
         ///compression ends here
 
@@ -125,15 +126,15 @@ public class Main {
                     }
                 }
             }
-            for (Map.Entry<String,Integer> entry:f15.entrySet()){
-                main.put(entry.getKey(),entry.getValue());
-            }
+        }
+        for (Map.Entry<String,Integer> entry:f15.entrySet()){
+            main.put(entry.getKey(),entry.getValue());
         }
         return main;
     }
 
     private static Map<String, Integer> create15PercentMap(Map<String, Integer> mp) {
-        int sizeForCreation= (int) (mp.size()*.3);
+        int sizeForCreation= (int) (mp.size()*.10);
         int i=0;
 
         Map<String,Integer> result=new HashMap<>();

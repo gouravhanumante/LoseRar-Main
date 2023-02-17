@@ -100,13 +100,13 @@ public class HuffmanCompressionImpl implements ICompressor{
 
             objectOutputStream.writeObject(ans);
 
-//            if (s.equals("Byte")){
-//                objectOutputStream.writeObject((byte)0);
-//            }else{
-//                objectOutputStream.writeObject((byte)1);
-//            }
-//            objectOutputStream.writeObject(lookupMap);
-//            objectOutputStream.writeObject(huffmanData.getCounter());
+            if (s.equals("Byte")){
+                objectOutputStream.writeObject((byte)0);
+            }else{
+                objectOutputStream.writeObject((byte)1);
+            }
+            objectOutputStream.writeObject(lookupMap);
+            objectOutputStream.writeObject(huffmanData.getCounter());
 
             oStream.close();
             objectOutputStream.close();

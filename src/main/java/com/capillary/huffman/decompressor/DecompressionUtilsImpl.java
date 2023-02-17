@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class DecompressionUtilsImpl implements IDecompressionUtils{
     @Override
-    public <T> T[] decompress(byte[] huffmanBytes, Map<T, String> lookupMap, byte counter) {
+    public <T> byte[] decompress(byte[] huffmanBytes, Map<T, String> lookupMap, byte counter) {
 
         String s=convertBytetoBitString(huffmanBytes,counter);
 
@@ -38,9 +38,9 @@ public class DecompressionUtilsImpl implements IDecompressionUtils{
         }
 
 
-        T[] result= (T[]) new Object[list.size()];
+        byte[] result=  new byte[list.size()];
         for ( int i=0;i<result.length;i++){
-            result[i]=list.get(i);
+            result[i]= (byte) list.get(i);
         }
         return result;
     }
