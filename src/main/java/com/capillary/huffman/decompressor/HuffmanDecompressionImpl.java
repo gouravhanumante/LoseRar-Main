@@ -14,15 +14,15 @@ public class HuffmanDecompressionImpl implements IDecompressor{
     }
 
     @Override
-    public void decompress(String source, String destination) {
+    public <T> void decompress(String source, String destination) {
         try {
             FileInputStream iStream=new FileInputStream(source);
             ObjectInputStream objectInputStream=new ObjectInputStream(iStream);
 
             OutputStream oStream=new FileOutputStream(destination);
-//            ObjectOutputStream objectOutputStream=new ObjectOutputStream(oStream);
+            ObjectOutputStream objectOutputStream=new ObjectOutputStream(oStream);
 
-            Byte[] huffmanBytes= (Byte[]) objectInputStream.readObject();
+            byte[] huffmanBytes= (byte[]) objectInputStream.readObject();
 //            System.out.println(Arrays.toString(huffmanBytes));
 
             if (huffmanBytes.length==1 && huffmanBytes[0]==-1){
@@ -33,27 +33,38 @@ public class HuffmanDecompressionImpl implements IDecompressor{
                 return;
             }
 
-            Map<Byte,String> lookupMap= (Map<Byte, String>) objectInputStream.readObject();
+            byte type=(byte)objectInputStream.readObject();
+
+            Map<?,String> lookupMap;
+
+            if (type==0){
+                lookupMap= (Map<Byte, String>) objectInputStream.readObject();
+            }else{
+               lookupMap= (Map<String , String>) objectInputStream.readObject();
+            }
+
             byte counter=(byte) objectInputStream.readObject();
 
 
 
 //            byte[] finalRes=getDecompressedData(huffmanBytes,lookupMap,counter);
 
-            Byte[] finalRes=util.decompress(huffmanBytes,lookupMap,counter);
+            T[] finalRes= (T[]) util.decompress(huffmanBytes,lookupMap,counter);
 
 //            System.out.println(Arrays.toString(finalRes));
 
-            byte[] fr=new byte[finalRes.length];
-            int i=0;
-            for (Byte b:finalRes){
-                fr[i++]=b;
-            }
+
+
+//            T[] fr=new T[finalRes.length];
+//            int i=0;
+//            for (T b:finalRes){
+//                fr[i++]=b;
+//            }
 
 
 
-//            objectOutputStream.writeObject(finalRes);
-            oStream.write(fr);
+            objectOutputStream.writeObject(finalRes);
+//            o
 
 //            objectOutputStream.close();
             objectInputStream.close();

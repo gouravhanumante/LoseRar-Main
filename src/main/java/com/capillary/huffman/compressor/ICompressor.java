@@ -1,5 +1,5 @@
 package com.capillary.huffman.compressor;
 
 public interface ICompressor {
-    <T> void compress(T[] b, String destination);
+    <T> void compress(Byte[] b, String destination);
 }

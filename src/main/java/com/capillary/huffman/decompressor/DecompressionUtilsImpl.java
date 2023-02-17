@@ -7,23 +7,23 @@ import java.util.Map;
 
 public class DecompressionUtilsImpl implements IDecompressionUtils{
     @Override
-    public Byte[] decompress(Byte[] huffmanBytes, Map<Byte, String> lookupMap, byte counter) {
+    public <T> T[] decompress(byte[] huffmanBytes, Map<T, String> lookupMap, byte counter) {
 
         String s=convertBytetoBitString(huffmanBytes,counter);
 
-        Map<String,Byte>  map=new HashMap<>();
+        Map<String,T>  map=new HashMap<>();
 
-        for (Map.Entry<Byte,String> entry:lookupMap.entrySet()){
+        for (Map.Entry<T,String> entry:lookupMap.entrySet()){
             map.put(entry.getValue(),entry.getKey());
         }
 
 
-        List<Byte> list=new ArrayList<>();
+        List<T> list=new ArrayList<>();
 
         for (int i=0;i<s.length();){
             int count=1;
             boolean flag=true;
-            Byte b=null;
+            T b=null;
             while (flag){
                 String key=s.substring(i,i+count);
                 b=map.get(key);
@@ -38,14 +38,14 @@ public class DecompressionUtilsImpl implements IDecompressionUtils{
         }
 
 
-        Byte[] result=new Byte[list.size()];
+        T[] result= (T[]) new Object[list.size()];
         for ( int i=0;i<result.length;i++){
             result[i]=list.get(i);
         }
         return result;
     }
 
-    public String convertBytetoBitString(Byte[] bytes, byte counter) {
+    public String convertBytetoBitString(byte[] bytes, byte counter) {
         StringBuilder sb=new StringBuilder();
         int i=0;
         for (i=0;i<bytes.length-1;i++){

@@ -9,14 +9,14 @@ public class Main {
 //        System.out.println(System.currentTimeMillis());
         long val1=System.currentTimeMillis();
 
-        loseRar.compression("/home/gauravhanumante/Files2/wbh.txt",
-                "/home/gauravhanumante/Files2/compressedTest.txt");
+        loseRar.compression("/home/gauravhanumante/Files2/input.txt",
+                "/home/gauravhanumante/Files2/ir1.txt");
 
 
         long val2=System.currentTimeMillis();
 
-        loseRar.decompression("/home/gauravhanumante/Files2/compressedTest.txt",
-                "/home/gauravhanumante/Files2/today.txt");
+//        loseRar.decompression("/home/gauravhanumante/Files2/compressedTest.txt",
+//                "/home/gauravhanumante/Files2/today.txt");
 
         long val3=System.currentTimeMillis();
 

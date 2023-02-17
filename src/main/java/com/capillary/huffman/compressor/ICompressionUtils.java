@@ -10,7 +10,7 @@ public interface ICompressionUtils {
 
     <T> Node createHuffmanTree(T[] fileData);
 
-    Map<?,String> buildLookupRecursive(Node root);
+    <T> Map<T,String> buildLookupRecursive(Node root);
 
     <T> HuffmanData createCompressedArray(T[] fileData, Map<?, String> lookupMap);
 

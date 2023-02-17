@@ -9,26 +9,27 @@ import java.util.Map;
 public class TreeCreationUtils implements ITreeCreationUtils{
 
     @Override
-    public <Byte> Map<java.lang.Byte, Integer> createFrequencyMap(Byte[] fileData) {
-        Map<java.lang.Byte,Integer> freq=new HashMap<>();
-        for (Byte b : fileData) {
+    public <T> Map<?, Integer> createFrequencyMap(T[] fileData) {
+        Map<T, Integer> freq=new HashMap<>();
+        for (T b : fileData) {
             Integer value = freq.get(b);
             if (value == null)
-                freq.put((java.lang.Byte) b, 1);
+                freq.put(b, 1);
             else
-                freq.put((java.lang.Byte) b, value + 1);
+                freq.put(b, value + 1);
         }
+//        System.out.println(freq);
         return freq;
     }
 
 
     @Override
-    public Node createTreeUsingMinHeap(Map<?, Integer> freq) {
+    public <T extends Comparable<T>> Node<T> createTreeUsingMinHeap(Map<?, Integer> freq) {
 
-        MinPriorityQueue<Node> pq=new MinPriorityQueue<>();
+        MinPriorityQueue<Node<T>> pq=new MinPriorityQueue<>();
 
         for (Map.Entry<?, Integer> entry:freq.entrySet()){
-            pq.add(new Node((Byte) entry.getKey(),entry.getValue()));
+            pq.add(new Node( (T)entry.getKey(),entry.getValue()));
         }
 
 

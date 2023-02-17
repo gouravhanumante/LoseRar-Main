@@ -9,18 +9,19 @@ import java.util.Map;
 public class CompressionUtils implements ICompressionUtils{
 
     @Override
-    public <Byte> Node createHuffmanTree(Byte[] fileData) {
+    public <T> Node createHuffmanTree(T[] fileData) {
         ITreeCreationUtils utils=new TreeCreationUtils();
 
 
-        Map<java.lang.Byte, Integer> mp=utils.createFrequencyMap(fileData);
+        Map<Byte, Integer> mp= (Map<Byte, Integer>) utils.createFrequencyMap(fileData);
 
+//        System.out.println("mppp " +mp);
         return utils.createTreeUsingMinHeap(mp);
     }
 
     @Override
-    public Map<?, String> buildLookupRecursive(Node root) {
-        Map<Byte,String> mp=new HashMap<>();
+    public <T> Map<T, String> buildLookupRecursive(Node root) {
+        Map<T,String> mp=new HashMap<>();
         if (root==null) return mp;
 
         buildLookupRecursive(root,"",mp);
@@ -31,14 +32,14 @@ public class CompressionUtils implements ICompressionUtils{
     }
 
 //    @Override
-    private void buildLookupRecursive(Node root, String s, Map<Byte, String> lookupMap) {
+    private <T> void buildLookupRecursive(Node root, String s, Map<T, String> lookupMap) {
         if (root.left!=null && root.right!=null){
             buildLookupRecursive(root.left,s+"0",lookupMap);
             buildLookupRecursive(root.right,s+"1",lookupMap);
         }else{
             if (s==""){
-                 lookupMap.put(root.data,"1");
-            }else lookupMap.put(root.data,s);
+                 lookupMap.put((T) root.data,"1");
+            }else lookupMap.put((T) root.data,s);
         }
     }
 
@@ -50,17 +51,16 @@ public class CompressionUtils implements ICompressionUtils{
 
 //
 //    01010101 0
-    public <Byte> HuffmanData createCompressedArray(Byte[] fileData, Map<?, String> lookupMap) {
+    public <T> HuffmanData createCompressedArray(T[] fileData, Map<?, String> lookupMap) {
 
         StringBuilder sb = new StringBuilder();
 
-        for (Byte b : fileData){
+        for (T b : fileData){
                 sb.append(lookupMap.get(b));
         }
-
         int length=(sb.length()+7)/8;
 //        Byte[] huffCodeBytes = new Byte[length];
-        java.lang.Byte[] huffCodeBytes=new java.lang.Byte[length];
+        Byte[] huffCodeBytes=new Byte[length];
         int counter=0;
         int idx = 0;
         for (int i = 0; i < sb.length(); i += 8) {
