@@ -37,12 +37,40 @@ public class DecompressionUtilsImpl implements IDecompressionUtils{
             i+=count;
         }
 
+        /////list string
+        System.out.println(list.get(0).getClass().getSimpleName());
+        List<Character> listc=new ArrayList<>();
+        if(list.get(0).getClass().getSimpleName().equals("String")) {
+            System.out.println("hi");
+            for (int i=0;i<list.size();i++){
+                String val= (String) list.get(i);
+                for (char c:val.toCharArray()){
+                    listc.add(c);
+                }
+            }
+            byte [] ans=new byte[listc.size()];
+            int j=0;
+            for (char x:listc){
+                ans[j++]= (byte) x;
+            }
 
-        byte[] result=  new byte[list.size()];
-        for ( int i=0;i<result.length;i++){
-            result[i]= (byte) list.get(i);
+            return ans;
+        }else{
+
+            byte[] result=  new byte[list.size()];
+            for ( int i=0;i<result.length;i++){
+                result[i]= (byte) list.get(i);
+            }
+            return result;
         }
-        return result;
+
+
+
+
+
+        //list
+
+
     }
 
     public String convertBytetoBitString(byte[] bytes, byte counter) {

@@ -1,6 +1,7 @@
 package com.capillary.wordbasedhuffman;
 
 import com.capillary.huffman.compressor.*;
+import com.capillary.huffman.decompressor.HuffmanDecompressionImpl;
 import com.capillary.huffman.mydefines.HuffmanData;
 import com.capillary.huffman.mydefines.Node;
 
@@ -18,46 +19,48 @@ public class Main {
 
 
 //        Byte[] fileData= rw.read("/home/gauravhanumante/Files2/input.txt");
-          Byte[] fileData = rw.read("/home/sarthakjain/IdeaProjects/Files/input.txt");
-//        String arr[]=
-
-        String words[]= createWordsArray(fileData);
-       Map<String,Integer> mp= (Map<String, Integer>) treeCreationUtils.createFrequencyMap(words);
-        mp= sortByValue((HashMap<String, Integer>) mp);
-
-        Map<String,Integer> f15=create15PercentMap(mp);
-//        System.out.println(f15);
-
-        Map<String,Integer> final15=createFinalMap(words, f15);
-
-//        System.out.println("here"+final15);
-        String[] finalFileData = getFinalFileData(words, final15);
-//        System.out.printf(Arrays.toString(finalFileData));
-
-//        System.out.println(final15);
-
-        Node root=treeCreationUtils.createTreeUsingMinHeap(final15);
+//          Byte[] fileData = rw.read("/home/sarthakjain/IdeaProjects/Files/inputsmall.txt");
+////        String arr[]=
+//
+//        String words[]= createWordsArray(fileData);
+//       Map<String,Integer> mp= (Map<String, Integer>) treeCreationUtils.createFrequencyMap(words);
+//        mp= sortByValue((HashMap<String, Integer>) mp);
+//
+//        Map<String,Integer> f15=create15PercentMap(mp);
+////        System.out.println(f15);
+//
+//        Map<String,Integer> final15=createFinalMap(words, f15);
+//
+////        System.out.println("here"+final15);
+//        String[] finalFileData = getFinalFileData(words, final15);
+////        System.out.printf(Arrays.toString(finalFileData));
+//
+////        System.out.println(final15);
+//
+//        Node root=treeCreationUtils.createTreeUsingMinHeap(final15);
+////
+////
+//        ICompressionUtils compressionUtils=new CompressionUtils();
+//        Map<String,String> huffcodes= compressionUtils.buildLookupRecursive(root);
+////
+////
+//        HuffmanData data= compressionUtils.createCompressedArray(finalFileData,huffcodes);
+////        System.out.println(Arrays.toString(data.getHuffmanByte()));
+//
+////        5.4
+////        2.2
+//        //60%
 //
 //
-        ICompressionUtils compressionUtils=new CompressionUtils();
-        Map<String,String> huffcodes= compressionUtils.buildLookupRecursive(root);
 //
 //
-        HuffmanData data= compressionUtils.createCompressedArray(finalFileData,huffcodes);
-//        System.out.println(Arrays.toString(data.getHuffmanByte()));
-
-//        5.4
-//        2.2
-        //60%
+//        HuffmanCompressionImpl c=new HuffmanCompressionImpl();
+//
+//        c.write("/home/sarthakjain/IdeaProjects/Files/compressed.txt",data,huffcodes);
 
 
-
-
-        HuffmanCompressionImpl c=new HuffmanCompressionImpl();
-
-        c.write("/home/sarthakjain/IdeaProjects/Files/compressed.txt",data,huffcodes);
-
-
+        HuffmanDecompressionImpl hf=new HuffmanDecompressionImpl();
+        hf.decompress("/home/sarthakjain/IdeaProjects/Files/compressed.txt","/home/sarthakjain/IdeaProjects/Files/resresres.txt");
         ///compression ends here
 
 //        dec d=new dec();
