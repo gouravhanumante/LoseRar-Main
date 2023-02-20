@@ -13,7 +13,7 @@ public class ReadDataImpl implements IReadData {
             inStream.read(b);
             inStream.close();
             Byte []bb= new Byte[b.length];
-            Arrays.setAll(bb,n->b[n]);
+            Arrays.setAll(bb, n->b[n]);
             return bb;
 
 

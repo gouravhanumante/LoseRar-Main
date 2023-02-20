@@ -36,7 +36,7 @@ public class HuffmanCompressionImpl implements ICompressor{
 
         Map<T, String> huffmanCodes=new HashMap<>();
         if (b.length==0){
-            huffmanData =new HuffmanData((Byte[]) b, (byte) 0);
+            huffmanData =new HuffmanData( b, (byte) 0);
             write(destination, huffmanData,huffmanCodes);
             return;
         }
