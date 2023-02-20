@@ -62,7 +62,7 @@ public class HuffmanDecompressionImpl implements IDecompressor{
 //            }
 
 
-            System.out.println(Arrays.toString(finalRes));
+//            System.out.println(Arrays.toString(finalRes));
             oStream.write(finalRes);
 //            o
 

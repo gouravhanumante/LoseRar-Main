@@ -1,14 +1,15 @@
+import com.capillary.huffman.HuffmanZipperImpl;
+import com.capillary.IZipper;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Watchable;
-import java.util.Timer;
 
 public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        ILoseRar loseRar=new HuffmanLoseRarImpl();
+        IZipper loseRar=new HuffmanZipperImpl();
 //        System.out.println(System.currentTimeMillis());
         long val1=System.currentTimeMillis();
 

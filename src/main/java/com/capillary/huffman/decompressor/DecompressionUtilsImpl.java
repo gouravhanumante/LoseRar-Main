@@ -38,10 +38,10 @@ public class DecompressionUtilsImpl implements IDecompressionUtils{
         }
 
         /////list string
-        System.out.println(list.get(0).getClass().getSimpleName());
+//        System.out.println(list.get(0).getClass().getSimpleName());
         List<Character> listc=new ArrayList<>();
         if(list.get(0).getClass().getSimpleName().equals("String")) {
-            System.out.println("hi");
+//            System.out.println("hi");
             for (int i=0;i<list.size();i++){
                 String val= (String) list.get(i);
                 for (char c:val.toCharArray()){

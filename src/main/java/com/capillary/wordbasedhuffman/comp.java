@@ -11,7 +11,8 @@ public class comp {
 
 
      HuffmanData huffmanData;
-    HuffmanCompressionImpl c = new HuffmanCompressionImpl();
+//    HuffmanCompressionImpl c = new HuffmanCompressionImpl();
+    IWriteData c=new WriteDataImpl();
 
     public void compressData(   ) {
 
@@ -40,11 +41,12 @@ public class comp {
 //        String arr[]=
 //
         String words[] = createWordsArray(fileData);
-        System.out.println(Arrays.toString(words));
+
+
         Map<String, Integer> mp = (Map<String, Integer>) treeCreationUtils.createFrequencyMap(words);
-        mp = sortByValue((HashMap<String, Integer>) mp);
+        mp = sortMapByValue((HashMap<String, Integer>) mp);
         //
-        Map<String, Integer> f15 = create15PercentMap(mp);
+        Map<String, Integer> f15 = createXPercentMap(mp);
         //        System.out.println(f15);
 //
         Map<String, Integer> final15 = createFinalMap(words, f15);
@@ -121,7 +123,7 @@ public class comp {
         return main;
     }
 
-    private static Map<String, Integer> create15PercentMap(Map<String, Integer> mp) {
+    private static Map<String, Integer> createXPercentMap(Map<String, Integer> mp) {
         int sizeForCreation = (int) (mp.size() * .10);
         int i = 0;
 
@@ -167,7 +169,7 @@ public class comp {
     }
 
 
-    public static Map<String, Integer> sortByValue(HashMap<String, Integer> hm) {
+    public static Map<String, Integer> sortMapByValue(HashMap<String, Integer> hm) {
 
         HashMap<String, Integer> temp = hm.entrySet().stream().sorted((i2, i1) -> i1.getValue().compareTo(i2.getValue())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
         return temp;

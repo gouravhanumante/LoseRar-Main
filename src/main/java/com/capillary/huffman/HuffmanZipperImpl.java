@@ -1,3 +1,6 @@
+package com.capillary.huffman;
+
+import com.capillary.IZipper;
 import com.capillary.huffman.compressor.HuffmanCompressionImpl;
 import com.capillary.huffman.compressor.ICompressor;
 import com.capillary.huffman.compressor.IReadData;
@@ -5,15 +8,15 @@ import com.capillary.huffman.compressor.ReadDataImpl;
 import com.capillary.huffman.decompressor.HuffmanDecompressionImpl;
 import com.capillary.huffman.decompressor.IDecompressor;
 
-public class HuffmanLoseRarImpl implements ILoseRar{
+public class HuffmanZipperImpl implements IZipper {
     IReadData rw;
     ICompressor hc;
 
-    public HuffmanLoseRarImpl(ReadDataImpl rw, HuffmanCompressionImpl hc) {
+    public HuffmanZipperImpl(ReadDataImpl rw, HuffmanCompressionImpl hc) {
         this.hc=hc;
         this.rw=rw;
     }
-    public HuffmanLoseRarImpl(){
+    public HuffmanZipperImpl(){
         rw=new ReadDataImpl();
         hc=new HuffmanCompressionImpl();
 
