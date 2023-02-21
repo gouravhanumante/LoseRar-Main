@@ -15,6 +15,8 @@ public class MixedCreationUtils {
         return (1.0*asl)/f;
     }
     public String[] getFinalFileData(String[] words, Map<String, Integer> mp) {
+//        System.out.println(mp.size());
+//        System.out.println(mp);
         ArrayList<String> ans = new ArrayList<>();
         for (String s : words) {
             if (!mp.containsKey(s)) {
@@ -27,6 +29,7 @@ public class MixedCreationUtils {
         }
         return ans.toArray(ans.toArray(new String[ans.size()]));
     }
+
     public String[] createWordsArray(Byte[] fileData) {
         int j=0;
 

@@ -21,12 +21,12 @@ public class Main {
 
         IZipper zipper=new MixedZipperImpl();
         long val1=System.currentTimeMillis();
-        zipper.compression("/Users/gouravhanumante/IdeaProjects/Test Files/input.txt","/Users/gouravhanumante/IdeaProjects/Test Files/compressedMain.txt");
-        long val2=System.currentTimeMillis();
-        zipper.decompression("/Users/gouravhanumante/IdeaProjects/Test Files/compressedMain.txt","/Users/gouravhanumante/IdeaProjects/Test Files/result.txt");
-        long val3=System.currentTimeMillis();
-        System.out.println("compression: " +(val2-val1));
-        System.out.println("decompression: "+(val3-val2));
+        zipper.compression("/Users/gouravhanumante/IdeaProjects/Test Files/input.txt","/Users/gouravhanumante/IdeaProjects/Test Files/Real Test Files/newempty.txt");
+//        long val2=System.currentTimeMillis();
+//        zipper.decompression("/Users/gouravhanumante/IdeaProjects/Test Files/compressedMain.txt","/Users/gouravhanumante/IdeaProjects/Test Files/result.txt");
+//        long val3=System.currentTimeMillis();
+//        System.out.println("compression: " +(val2-val1));
+//        System.out.println("decompression: "+(val3-val2));
 
 
 

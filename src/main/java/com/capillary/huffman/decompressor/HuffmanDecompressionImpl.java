@@ -35,12 +35,12 @@ public class HuffmanDecompressionImpl implements IDecompressor{
 
             byte type=(byte)objectInputStream.readObject();
 
-            Map<?,String> lookupMap;
+            Map<T,String> lookupMap;
 
             if (type==0){
-                lookupMap= (Map<Byte, String>) objectInputStream.readObject();
+                lookupMap= (Map<T, String>) objectInputStream.readObject();
             }else{
-               lookupMap= (Map<String , String>) objectInputStream.readObject();
+               lookupMap= (Map<T, String>) objectInputStream.readObject();
             }
 
             byte counter=(byte) objectInputStream.readObject();
@@ -50,6 +50,7 @@ public class HuffmanDecompressionImpl implements IDecompressor{
 //            byte[] finalRes=getDecompressedData(huffmanBytes,lookupMap,counter);
 
             byte[] finalRes= util.decompress(huffmanBytes,lookupMap,counter);
+//            System.out.println(Arrays.toString(finalRes));
 
 //            System.out.println(Arrays.toString(finalRes));
 

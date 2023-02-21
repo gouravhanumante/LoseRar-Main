@@ -43,16 +43,19 @@ public class WriteDataImpl implements IWriteData {
             }
 //            System.out.println(s);
 
-
-            objectOutputStream.writeObject(ans);
+            //30
+            //142284
+            //256208
+        oStream.write(ans);
+//            objectOutputStream.writeObject(ans);
 
             if (s.equals("Byte")){
-                objectOutputStream.writeObject((byte)0);
+                oStream.write((byte)0);
             }else{
-                objectOutputStream.writeObject((byte)1);
+            oStream.write((byte)1);
             }
             objectOutputStream.writeObject(huffCodes);
-            objectOutputStream.writeObject(huffmanData.getCounter());
+            oStream.write(huffmanData.getCounter());
 
             oStream.close();
             objectOutputStream.close();
