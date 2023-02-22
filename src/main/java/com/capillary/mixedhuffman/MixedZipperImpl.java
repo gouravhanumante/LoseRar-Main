@@ -9,6 +9,8 @@ import com.capillary.huffman.decompressor.IDecompressor;
 import com.capillary.mixedhuffman.compressor.MixedCompressionImpl;
 import com.capillary.mixedhuffman.decompressor.MixedDecompressionImpl;
 
+import java.io.IOException;
+
 public class MixedZipperImpl implements IZipper
 {
     @Override
@@ -17,7 +19,11 @@ public class MixedZipperImpl implements IZipper
         ICompressor compressor=new MixedCompressionImpl();
 
         Byte[] fileData=r.read(source);
-        compressor.compress(fileData,destination);
+        try {
+            compressor.compress(fileData,destination);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }

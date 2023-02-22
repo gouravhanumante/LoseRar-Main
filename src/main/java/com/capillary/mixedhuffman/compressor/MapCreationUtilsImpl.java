@@ -1,7 +1,10 @@
 package com.capillary.mixedhuffman.compressor;
 
+import com.capillary.huffman.compressor.CompressionUtils;
+import com.capillary.huffman.compressor.ICompressionUtils;
 import com.capillary.huffman.compressor.ITreeCreationUtils;
 import com.capillary.huffman.compressor.TreeCreationUtils;
+import com.capillary.huffman.mydefines.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,11 +17,33 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
 
     ITreeCreationUtils treeCreationUtils=new TreeCreationUtils();
     @Override
-    public Map<String, Integer> getFrequencyMap(String[] words) {
+    public Map<String, Integer> getFrequencyMap(String[] words,double per) {
 
+        long val1=System.currentTimeMillis();
         Map<String,Integer> freqMap= (Map<String, Integer>) treeCreationUtils.createFrequencyMap(words);
+
+        long val2=System.currentTimeMillis();
+
+//        System.out.println(val2-val1+"createFrequencyMap");
+
         Map<String,Integer> sortedFreqMap= sortMapByValue(freqMap);
-        Map<String,Integer> finalFrequencyMap=createFinalFrequencyMap(words,sortedFreqMap);
+
+        /////
+
+        //////
+
+        long val3=System.currentTimeMillis();
+//        System.out.println(val3-val2+"sortMapByValue");
+        Map<String,Integer> finalFrequencyMap=createFinalFrequencyMap(words,sortedFreqMap,per);
+//        for(Map.Entry<String,Integer> entry:finalFrequencyMap.entrySet())
+//        {
+//            System.out.println("Key = ");
+//        }
+        long val4=System.currentTimeMillis();
+//        System.out.println(val4-val3+"createFinalFrequencyMap");
+
+
+
 
         return finalFrequencyMap;
 
@@ -42,10 +67,15 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
         return temp;
     }
 
-    @Override
-    public Map<String, Integer> createFinalFrequencyMap(String[] words, Map<String, Integer> mp) {
 
-        int sizeForCreation = (int) (mp.size() * .20);
+
+    //////////////////////////////////////
+
+
+    @Override
+    public Map<String, Integer> createFinalFrequencyMap(String[] words, Map<String, Integer> mp,double percentage) {
+
+        int sizeForCreation = (int) (mp.size() * percentage);
         int i = 0;
 
         Map<String, Integer> result = new HashMap<>();
@@ -54,6 +84,8 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
             result.put(entry.getKey(), entry.getValue());
             i++;
         }
+
+
 
 
 
