@@ -6,7 +6,7 @@ public class DecompressionUtilsImpl implements IDecompressionUtils{
     @Override
     public <T> byte[] decompress(byte[] huffmanBytes, Map<T, String> lookupMap, byte counter) {
 
-        System.out.println(Arrays.toString(huffmanBytes));
+//        System.out.println(Arrays.toString(huffmanBytes));
         String s=convertBytetoBitString(huffmanBytes,counter);
 
         Map<String,T>  map=new HashMap<>();

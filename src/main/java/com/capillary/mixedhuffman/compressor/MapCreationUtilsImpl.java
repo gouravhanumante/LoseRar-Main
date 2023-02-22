@@ -45,7 +45,7 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
     @Override
     public Map<String, Integer> createFinalFrequencyMap(String[] words, Map<String, Integer> mp) {
 
-        int sizeForCreation = (int) (mp.size() * .30);
+        int sizeForCreation = (int) (mp.size() * .20);
         int i = 0;
 
         Map<String, Integer> result = new HashMap<>();

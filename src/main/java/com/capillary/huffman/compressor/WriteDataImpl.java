@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class WriteDataImpl implements IWriteData {
     @Override
-    public void write(String destination, HuffmanData huffmanData, Map<?, String> huffCodes) {
+    public void write(String destination, HuffmanData huffmanData, Map<?, ?> huffCodes) {
         try {
             OutputStream oStream = new FileOutputStream(destination);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(oStream);
@@ -37,7 +37,7 @@ public class WriteDataImpl implements IWriteData {
 
 
             String s="";
-            for (Map.Entry<?, String> entry:huffCodes.entrySet()){
+            for (Map.Entry<?, ?> entry:huffCodes.entrySet()){
                 s= String.valueOf(entry.getKey().getClass().getSimpleName());
                 break;
             }
@@ -46,17 +46,19 @@ public class WriteDataImpl implements IWriteData {
             //30
             //142284
             //256208
-        oStream.write(ans);
-//            objectOutputStream.writeObject(ans);
+//        oStream.write(ans);
+            objectOutputStream.writeObject(ans);
 
             if (s.equals("Byte")){
-                oStream.write((byte)0);
+                objectOutputStream.writeObject((byte)0);
+//                oStream.write((byte)0);
             }else{
-            oStream.write((byte)1);
+                objectOutputStream.writeObject((byte)1);
+//            oStream.write((byte)1);
             }
             objectOutputStream.writeObject(huffCodes);
-            oStream.write(huffmanData.getCounter());
-
+//            oStream.write(huffmanData.getCounter());
+            objectOutputStream.writeObject(huffmanData.getCounter());
             oStream.close();
             objectOutputStream.close();
 
