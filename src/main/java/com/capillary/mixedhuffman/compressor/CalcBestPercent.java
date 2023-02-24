@@ -46,7 +46,7 @@ public class CalcBestPercent {
             String destination="/home/sarthakjain/IdeaProjects/files/decompressedInput.txt";
             long bytesize=getSize(huffmanData.getHuffmanByte(),freqMap,huffmanCodes);
             long mapsize=getMapSize(freqMap);
-            System.out.println(bytesize+" "+mapsize);
+//            System.out.println(bytesize+" "+mapsize);
 //            long ans=getSize(huffmanData.getHuffmanByte(),freqMap,huffmanCodes);
             long ans=bytesize+mapsize;
 
@@ -57,11 +57,11 @@ public class CalcBestPercent {
 
             }
 
-            System.out.println("for "+i+"%: "+ ans);
+//            System.out.println("for "+i+"%: "+ ans);
 
         }
 //            System.out.println("Best percent: "bestPercent);
-        System.out.println("Best Percent:" +bestPercent + ", MinFileSize:" + minSize);
+//        System.out.println("Best Percent:" +bestPercent + ", MinFileSize:" + minSize);
 
         return resultFreqMap;
     }

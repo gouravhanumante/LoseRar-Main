@@ -34,11 +34,11 @@ public class Main {
         long val1=System.currentTimeMillis();
 
 
-//        zipper.compression(gsource,gcompressed);
+        zipper.compression(gsource,gcompressed);
         long val2=System.currentTimeMillis();
 
 
-//        zipper.decompression(gcompressed,gdestination);
+        zipper.decompression(gcompressed,gdestination);
         long val3=System.currentTimeMillis();
         System.out.println("compression: " +(val2-val1));
         System.out.println("decompression: "+(val3-val2));
