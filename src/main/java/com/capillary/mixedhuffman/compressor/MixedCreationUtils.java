@@ -44,7 +44,6 @@ public class MixedCreationUtils {
 
         StringBuilder sb = new StringBuilder();
         for (byte b : fileData) {
-
             if ((b <= 90 && b >= 65) || (b <= 122 && b >= 97)) {
                 sb.append((char) b);
             } else {
@@ -126,72 +125,68 @@ public class MixedCreationUtils {
 //
 //        return null;
 //
+////    }
+//    HuffmanData multithreading(String []words,Map<String,Integer> mp,double per){
+//
+//
+//
+//        IMapCreationUtils mapCreationUtils=new MapCreationUtilsImpl();
+//        MixedCreationUtils utils=new MixedCreationUtils();
+//        ITreeCreationUtils treeCreationUtils=new TreeCreationUtils();
+//        ICompressionUtils compressionUtils=new CompressionUtils();
+//
+//
+//        //
+//
+////        Map<String,Integer> mp1=mapCreationUtils.createFinalFrequencyMap(words,mp,per);
+//
+//
+//        //p3
+//        String[] finalFileData1=utils.getFinalFileData(words,mp);
+//
+////        System.out.println("Created final file data");
+//
+//        //
+//
+//        Node root1=treeCreationUtils.createTreeUsingMinHeap(mp);
+////        System.out.println("Created tree");
+//
+//
+//        //
+//
+//        Map<String,String> h1=compressionUtils.buildLookupRecursive(root1);
+////        System.out.println("Created huffmap");
+//
+////        int sum1=cal(h1,mp);
+//
+////        System.out.println(sum1);
+//
+////
+////        int max=Math.min(Math.min(sum1,sum2),sum3);
+////        if (max==sum1){
+////            return compressionUtils.createCompressedArray(finalFileData1,h1);
+////
+////        }
+////        if (max==sum2) {
+////            return compressionUtils.createCompressedArray(finalFileData2,h2);
+////        }
+////        if (max==sum3) {
+////            return compressionUtils.createCompressedArray(finalFileData3,h3);
+////        }
+//
+//        return compressionUtils.createCompressedArray(finalFileData1,h1);
+//
 //    }
-    HuffmanData multithreading(String []words,Map<String,Integer> mp,double per){
-
-
-
-        IMapCreationUtils mapCreationUtils=new MapCreationUtilsImpl();
-        //objects
-        MixedCreationUtils utils=new MixedCreationUtils();
-        ITreeCreationUtils treeCreationUtils=new TreeCreationUtils();
-        ICompressionUtils compressionUtils=new CompressionUtils();
-
-
-        //
-
-//        Map<String,Integer> mp1=mapCreationUtils.createFinalFrequencyMap(words,mp,per);
-
-
-        //p3
-        String[] finalFileData1=utils.getFinalFileData(words,mp);
-
-
-
-        //
-
-        Node root1=treeCreationUtils.createTreeUsingMinHeap(mp);
-
-        //
-
-        Map<String,String> h1=compressionUtils.buildLookupRecursive(root1);
-
-        int sum1=cal(h1,mp);
-
-//        System.out.println(sum1);
-
 //
-//        int max=Math.min(Math.min(sum1,sum2),sum3);
-//        if (max==sum1){
-//            return compressionUtils.createCompressedArray(finalFileData1,h1);
+//    int cal(Map<String,String> huffcode,Map<String,Integer> frequency){
+//        int sum=0;
 //
+//        for (Map.Entry<String,String> entry:huffcode.entrySet()){
+//            sum+=frequency.get(entry.getKey())*entry.getValue().length();
 //        }
-//        if (max==sum2) {
-//            return compressionUtils.createCompressedArray(finalFileData2,h2);
-//        }
-//        if (max==sum3) {
-//            return compressionUtils.createCompressedArray(finalFileData3,h3);
-//        }
-
-        return compressionUtils.createCompressedArray(finalFileData1,h1);
-
-    }
-
-    int cal(Map<String,String> huffcode,Map<String,Integer> frequency){
-        int sum=0;
-
-        for (Map.Entry<String,String> entry:huffcode.entrySet()){
-            sum+=frequency.get(entry.getKey())*entry.getValue().length();
-        }
-
-
-
-
-        return sum;
-
-    }
-
-
+//
+//        return sum;
+//    }
 
 
 }

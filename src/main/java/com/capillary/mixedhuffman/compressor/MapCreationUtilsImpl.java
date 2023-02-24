@@ -21,7 +21,6 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
 
         long val1=System.currentTimeMillis();
         Map<String,Integer> freqMap= (Map<String, Integer>) treeCreationUtils.createFrequencyMap(words);
-
         long val2=System.currentTimeMillis();
 
 //        System.out.println(val2-val1+"createFrequencyMap");
@@ -34,6 +33,8 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
 
         long val3=System.currentTimeMillis();
 //        System.out.println(val3-val2+"sortMapByValue");
+//        System.out.println(per + "Percentage for final Map here");
+
         Map<String,Integer> finalFrequencyMap=createFinalFrequencyMap(words,sortedFreqMap,per);
 //        for(Map.Entry<String,Integer> entry:finalFrequencyMap.entrySet())
 //        {
@@ -74,7 +75,7 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
 
     @Override
     public Map<String, Integer> createFinalFrequencyMap(String[] words, Map<String, Integer> mp,double percentage) {
-
+//        System.out.println(percentage + "Percentage for final Map here");
         int sizeForCreation = (int) (mp.size() * percentage);
         int i = 0;
 

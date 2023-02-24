@@ -39,74 +39,38 @@ public class MixedCompressionImpl implements ICompressor
             return;
         }
 
-        Map<T, String> huffmanCodes=new HashMap<>();
-        //1
-//        String[] words=mapCreationUtils.createWordsArray(fileData);
-
-        //2
-//        Map<String,Integer> freqMap= (Map<String, Integer>) treeCreationUtils.createFrequencyMap(words);
         long val1 = System.currentTimeMillis();
         String[] words = mixedCreationUtils.createWordsArray(fileData);
         long val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "createWordsArray");
 
-        long val3 = System.currentTimeMillis();
-//        System.out.println(val3 - val2 + "getFrequencyMap");
+        val1 = System.currentTimeMillis();
+        CalcBestPercent calcBestPercent = new CalcBestPercent();
+        Map<String, Integer> freqMap = calcBestPercent.getBestPercent(words);
+        val2 = System.currentTimeMillis();
+        System.out.println(val2 - val1 + "CalcBestPercent");
 
-        //yaha se
+        val1 = System.currentTimeMillis();
+        String[] finalFileData=mixedCreationUtils.getFinalFileData(words,freqMap);
+        val2 = System.currentTimeMillis();
+        System.out.println(val2 - val1 + "getFinalFileData after best percent");
 
+        Node root=treeCreationUtils.createTreeUsingMinHeap(freqMap);
+        val1 = System.currentTimeMillis();
+        System.out.println(val1 - val2 + "createTreeUsingMinHeap");
 
+        Map<T,String> huffmanCodes=compressionUtils.buildLookupRecursive(root);
+        val2 = System.currentTimeMillis();
+        System.out.println(val2 - val1 + "buildLookupRecursive");
 
+        huffmanData = compressionUtils.createCompressedArray(finalFileData,huffmanCodes);
+        val1 = System.currentTimeMillis();
+        System.out.println(val1 - val2 + "createCompressedArray");
 
-
-
-//        String[] finalFileData = mixedCreationUtils.getFinalFileData(words,finalMap);
-//        long val4 = System.currentTimeMillis();
-//        System.out.println(val4 - val3 + "getFinalFileData");
-//
-//        Node root = treeCreationUtils.createTreeUsingMinHeap(finalMap);
-//        long val5 = System.currentTimeMillis();
-//        System.out.println(val5 - val4 + "createTreeUsingMinHeap");
-//
-//        Map<String, String> huffCodes = compressionUtils.buildLookupRecursive(root);
-//        long val6 = System.currentTimeMillis();
-//        System.out.println(val6 - val5 + "buildLookupRecursive");
-//        HuffmanData huffmanData=compressionUtils.createCompressedArray(finalFileData,huffCodes);
-//
-//
-//
-
-//        System.out.println();
-        long out=System.currentTimeMillis();
+        writeData.write(destination, huffmanData, freqMap);
+        val2 = System.currentTimeMillis();
+        System.out.println(val2 - val1 + "write");
 
 
-
-        System.out.println("start");
-        for (int i=0;i<=100;i++){
-            System.out.print(i+"% " );
-
-        Map<String,Integer> finalMap=mapCreationUtils.getFrequencyMap(words,(double)i/100);
-            HuffmanData huffmanData = mixedCreationUtils.multithreading(words,finalMap,(double) i/100);
-            writeData.write(destination, huffmanData, finalMap);
-            long size=Files.size(Path.of(destination));
-
-            System.out.println(size);
-//            System.out.println(FileUtils);
-        }
-        System.out.println("end");
-        long out2=System.currentTimeMillis();
-//        System.out.println("haan yahi "+(out2-out));
-
-        //
-
-        //yaha tak
-        long val7 = System.currentTimeMillis();
-//        System.out.println(val7 - val6 + "createCompressedArray");
-
-        long val8 = System.currentTimeMillis();
-        System.out.println(val8 - val7 + "write");
-
-//        MixedCreationUtils utils=new MixedCreationUtils();
-//        System.out.println(utils.calculate(huffCodes,finalMap));
     }
 }

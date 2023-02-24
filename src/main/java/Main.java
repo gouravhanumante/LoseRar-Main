@@ -13,14 +13,14 @@ public class Main {
 //        System.out.println(System.currentTimeMillis());
         long val1=System.currentTimeMillis();
 
-        loseRar.compression("/Users/gouravhanumante/IdeaProjects/Test Files/test.txt",
-                "/Users/gouravhanumante/IdeaProjects/Test Files/Real Test Files/compressedTest.txt");
+        loseRar.compression("/home/sarthakjain/IdeaProjects/files/bigfile.txt",
+                "/home/sarthakjain/IdeaProjects/files/compressedTest.txt");
 //
 //
 //        long val2=System.currentTimeMillis();
 //
-        loseRar.decompression("/Users/gouravhanumante/IdeaProjects/Test Files/Real Test Files/compressedTest.txt",
-                "/Users/gouravhanumante/IdeaProjects/Test Files/Real Test Files/ans.txt");
+        loseRar.decompression("/home/sarthakjain/IdeaProjects/files/compressedTest.txt",
+                "/home/sarthakjain/IdeaProjects/files/ans.txt");
 //
 ////        boolean areEqual = sameContent()
 ////        System.out.println(areEqual);
