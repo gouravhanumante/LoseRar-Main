@@ -46,6 +46,9 @@ public class MixedCompressionImpl implements ICompressor
 
         val1 = System.currentTimeMillis();
         CalcBestPercent calcBestPercent = new CalcBestPercent();
+
+
+        //here
         Map<String, Integer> freqMap = calcBestPercent.getBestPercent(words);
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "CalcBestPercent");

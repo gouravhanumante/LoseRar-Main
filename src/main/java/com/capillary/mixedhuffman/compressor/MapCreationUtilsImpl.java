@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 public class MapCreationUtilsImpl implements IMapCreationUtils
 {
-
     ITreeCreationUtils treeCreationUtils=new TreeCreationUtils();
     @Override
     public Map<String, Integer> getFrequencyMap(String[] words,double per) {
@@ -27,13 +26,7 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
 
         Map<String,Integer> sortedFreqMap= sortMapByValue(freqMap);
 
-        /////
-
-        //////
-
         long val3=System.currentTimeMillis();
-//        System.out.println(val3-val2+"sortMapByValue");
-//        System.out.println(per + "Percentage for final Map here");
 
         Map<String,Integer> finalFrequencyMap=createFinalFrequencyMap(words,sortedFreqMap,per);
 //        for(Map.Entry<String,Integer> entry:finalFrequencyMap.entrySet())
@@ -43,19 +36,7 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
         long val4=System.currentTimeMillis();
 //        System.out.println(val4-val3+"createFinalFrequencyMap");
 
-
-
-
         return finalFrequencyMap;
-
-
-//        String[] result=getFinalFileData(words,finalFrequencyMap);
-
-
-
-
-
-
 
     }
 
@@ -68,14 +49,13 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
         return temp;
     }
 
-
-
     //////////////////////////////////////
 
 
     @Override
     public Map<String, Integer> createFinalFrequencyMap(String[] words, Map<String, Integer> mp,double percentage) {
 //        System.out.println(percentage + "Percentage for final Map here");
+
         int sizeForCreation = (int) (mp.size() * percentage);
         int i = 0;
 
@@ -87,26 +67,21 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
         }
 
 
-
-
-
-        Map<String, Integer> finalMap = new HashMap<>();
-//        System.out.println(f15);
         for (String s : words) {
             if (!result.containsKey(s)) {
                 for (char c : s.toCharArray()) {
-                    if (finalMap.containsKey(String.valueOf(c))) {
-                        finalMap.put(String.valueOf(c), finalMap.get(String.valueOf(c)) + 1);
+                    if (result.containsKey(String.valueOf(c))) {
+                        result.put(String.valueOf(c), result.get(String.valueOf(c)) + 1);
                     } else {
-                        finalMap.put(String.valueOf(c), 1);
+                        result.put(String.valueOf(c), 1);
                     }
                 }
             }
         }
-        for (Map.Entry<String, Integer> entry : result.entrySet()) {
-            finalMap.put(entry.getKey(), entry.getValue());
-        }
-        return finalMap;
+//        for (Map.Entry<String, Integer> entry : result.entrySet()) {
+//            result.put(entry.getKey(), entry.getValue());
+//        }
+        return result;
 
 
     }

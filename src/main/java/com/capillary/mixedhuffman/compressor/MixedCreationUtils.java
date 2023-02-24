@@ -45,6 +45,7 @@ public class MixedCreationUtils {
         StringBuilder sb = new StringBuilder();
         for (byte b : fileData) {
             if ((b <= 90 && b >= 65) || (b <= 122 && b >= 97)) {
+//            if(Character.isLetter((char) b)){
                 sb.append((char) b);
             } else {
                 if (sb.length() != 0)

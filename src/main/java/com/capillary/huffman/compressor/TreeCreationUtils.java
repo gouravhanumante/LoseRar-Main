@@ -38,6 +38,16 @@ public class TreeCreationUtils implements ITreeCreationUtils{
             Node left=pq.poll();
             Node right=pq.poll();
 
+//            System.out.println();
+//            if (left.left==null && left.right==null){
+//                System.out.print("left data: "+left.data);
+//            }
+//            if (right.left==null && right.right==null){
+//                System.out.print("  right data: "+right.data);
+//            }
+//            System.out.println();
+            ;
+
             Node parent=new Node(null,left.frequency+right.frequency);
             parent.left=left;
             parent.right=right;
