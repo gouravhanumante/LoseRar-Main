@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class WriteDataImpl implements IWriteData {
     @Override
-    public void write(String destination, HuffmanData huffmanData, Map<?, ?> writableMap) {
+    public void write(String destination, HuffmanData huffmanData, Map<String, Integer> writableMap) {
         try {
             OutputStream oStream = new FileOutputStream(destination);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(oStream);

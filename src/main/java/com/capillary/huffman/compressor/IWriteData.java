@@ -5,5 +5,5 @@ import com.capillary.huffman.mydefines.HuffmanData;
 import java.util.Map;
 
 public interface IWriteData {
-    void write(String destination, HuffmanData huffmanData, Map<?,?> huffCodes);
+    void write(String destination, HuffmanData huffmanData, Map<String,Integer> huffCodes);
 }

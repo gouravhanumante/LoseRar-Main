@@ -35,8 +35,8 @@ public class MixedCompressionImpl implements ICompressor
 
     Helper helper=new Helper();
     @Override
-    public <T> void compress(Byte[] fileData, String destination) throws IOException, ExecutionException, InterruptedException {
-        Map<String,String> temp=new HashMap<>();
+    public void compress(Byte[] fileData, String destination) throws IOException, ExecutionException, InterruptedException {
+        Map<String,Integer> temp=new HashMap<>();
         if (fileData.length==0){
             huffmanData =new HuffmanData( fileData, (byte) 0);
             writeData.write(destination, huffmanData,temp);
@@ -60,12 +60,13 @@ public class MixedCompressionImpl implements ICompressor
         ExecutorService service= Executors.newFixedThreadPool(4);
         CalcBestPercent[] tasks=new CalcBestPercent[4];
         List<Future<Long>> sizes=new ArrayList<>();
-
+        long st=System.currentTimeMillis();
 
         for (int i=0;i<4;i++){
             tasks[i]=new CalcBestPercent(words,initialMap,i);
             sizes.add(service.submit(tasks[i]));
         }
+
 
         Long bestSize=Long.MAX_VALUE;
         Map<String,Integer> bestMap = null;
@@ -78,7 +79,8 @@ public class MixedCompressionImpl implements ICompressor
             }
         }
         service.shutdown();
-
+        long et=System.currentTimeMillis();
+        System.out.println("st-et:" +(et-st));
         System.out.println("bestSize:"+bestSize);
 
 
@@ -94,7 +96,7 @@ public class MixedCompressionImpl implements ICompressor
         val1 = System.currentTimeMillis();
         System.out.println(val1 - val2 + "createTreeUsingMinHeap");
 
-        Map<T,String> huffmanCodes=compressionUtils.buildLookupRecursive(root);
+        Map<String,String> huffmanCodes=compressionUtils.buildLookupRecursive(root);
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "buildLookupRecursive");
 

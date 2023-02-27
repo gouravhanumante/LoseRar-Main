@@ -8,11 +8,11 @@ import java.util.Map;
 
 public interface ICompressionUtils {
 
-    <T> Node createHuffmanTree(T[] fileData);
+     Node createHuffmanTree(String[] fileData);
 
-    <T> Map<T,String> buildLookupRecursive(Node root);
+     Map<String,String> buildLookupRecursive(Node root);
 
-    <T> HuffmanData createCompressedArray(T[] fileData, Map<?, String> lookupMap);
+     HuffmanData createCompressedArray(String[] fileData, Map<String, String> lookupMap);
 
 
 }

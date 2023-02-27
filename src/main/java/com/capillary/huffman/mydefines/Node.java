@@ -1,22 +1,22 @@
 package com.capillary.huffman.mydefines;
 
-public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
-    public T getData() {
+public class Node implements Comparable<Node> {
+    public String getData() {
         return data;
     }
 
-    public T data;
+    public String data;
     public int frequency;
     public Node left;
     public Node right;
 
-    public Node(T data, int frequency){
+    public Node(String data, int frequency){
         this.data=data;
         this.frequency=frequency;
     }
 
     @Override
-    public int compareTo(Node<T> o) {
+    public int compareTo(Node o) {
        return this.frequency-o.frequency;
     }
 

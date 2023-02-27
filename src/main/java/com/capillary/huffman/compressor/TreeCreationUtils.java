@@ -9,9 +9,9 @@ import java.util.Map;
 public class TreeCreationUtils implements ITreeCreationUtils{
 
     @Override
-    public <T> Map<?, Integer> createFrequencyMap(T[] fileData) {
-        Map<T, Integer> freq=new HashMap<>();
-        for (T b : fileData) {
+    public Map<String, Integer> createFrequencyMap(String[] fileData) {
+        Map<String, Integer> freq=new HashMap<>();
+        for (String b : fileData) {
             Integer value = freq.get(b);
             if (value == null)
                 freq.put(b, 1);
@@ -23,12 +23,12 @@ public class TreeCreationUtils implements ITreeCreationUtils{
 
 
     @Override
-    public <T extends Comparable<T>> Node<T> createTreeUsingMinHeap(Map<?, Integer> freq) {
+    public Node createTreeUsingMinHeap(Map<String, Integer> freq) {
 
-        MinPriorityQueue<Node<T>> pq=new MinPriorityQueue<>();
+        MinPriorityQueue<Node> pq=new MinPriorityQueue<>();
 
-        for (Map.Entry<?, Integer> entry:freq.entrySet()){
-            pq.add(new Node( (T)entry.getKey(),entry.getValue()));
+        for (Map.Entry<String, Integer> entry:freq.entrySet()){
+            pq.add(new Node( entry.getKey(),entry.getValue()));
         }
 
         //create tree using pq

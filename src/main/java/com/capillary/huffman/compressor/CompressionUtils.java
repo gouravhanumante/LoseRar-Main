@@ -9,19 +9,19 @@ import java.util.Map;
 public class CompressionUtils implements ICompressionUtils{
 
     @Override
-    public <T> Node createHuffmanTree(T[] fileData) {
+    public  Node createHuffmanTree(String[] fileData) {
         ITreeCreationUtils utils=new TreeCreationUtils();
 
 
-        Map<Byte, Integer> mp= (Map<Byte, Integer>) utils.createFrequencyMap(fileData);
+        Map<String, Integer> mp=  utils.createFrequencyMap(fileData);
 
 //        System.out.println("mppp " +mp);
         return utils.createTreeUsingMinHeap(mp);
     }
 
     @Override
-    public <T> Map<T, String> buildLookupRecursive(Node root) {
-        Map<T,String> mp=new HashMap<>();
+    public  Map<String, String> buildLookupRecursive(Node root) {
+        Map<String,String> mp=new HashMap<>();
         if (root==null) return mp;
 
         buildLookupRecursive(root,"",mp);
@@ -32,14 +32,14 @@ public class CompressionUtils implements ICompressionUtils{
     }
 
 //    @Override
-    private <T> void buildLookupRecursive(Node root, String s, Map<T, String> lookupMap) {
+    private  void buildLookupRecursive(Node root, String s, Map<String, String> lookupMap) {
         if (root.left!=null && root.right!=null){
             buildLookupRecursive(root.left,s+"0",lookupMap);
             buildLookupRecursive(root.right,s+"1",lookupMap);
         }else{
             if (s==""){
-                 lookupMap.put((T) root.data,"1");
-            }else lookupMap.put((T) root.data,s);
+                 lookupMap.put( root.data,"1");
+            }else lookupMap.put(root.data,s);
         }
     }
 
@@ -51,11 +51,11 @@ public class CompressionUtils implements ICompressionUtils{
 
 //
 //    01010101 0
-    public <T> HuffmanData createCompressedArray(T[] fileData, Map<?, String> lookupMap) {
+    public HuffmanData createCompressedArray(String[] fileData, Map<String , String> lookupMap) {
 
         StringBuilder sb = new StringBuilder();
 
-        for (T b : fileData){
+        for (String b : fileData){
                 sb.append(lookupMap.get(b));
         }
         int length=(sb.length()+7)/8;
