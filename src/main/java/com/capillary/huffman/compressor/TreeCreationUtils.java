@@ -18,7 +18,6 @@ public class TreeCreationUtils implements ITreeCreationUtils{
             else
                 freq.put(b, value + 1);
         }
-//        System.out.println(freq);
         return freq;
     }
 
@@ -32,27 +31,15 @@ public class TreeCreationUtils implements ITreeCreationUtils{
             pq.add(new Node( (T)entry.getKey(),entry.getValue()));
         }
 
-
         //create tree using pq
         while (pq.len()>1){
             Node left=pq.poll();
             Node right=pq.poll();
 
-//            System.out.println();
-//            if (left.left==null && left.right==null){
-//                System.out.print("left data: "+left.data);
-//            }
-//            if (right.left==null && right.right==null){
-//                System.out.print("  right data: "+right.data);
-//            }
-//            System.out.println();
-            ;
-
             Node parent=new Node(null,left.frequency+right.frequency);
             parent.left=left;
             parent.right=right;
             pq.add(parent);
-
         }
 
         return pq.poll();

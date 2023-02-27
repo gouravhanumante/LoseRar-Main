@@ -9,6 +9,7 @@ import com.capillary.huffman.decompressor.HuffmanDecompressionImpl;
 import com.capillary.huffman.decompressor.IDecompressor;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 public class HuffmanZipperImpl implements IZipper {
     IReadData rw;
@@ -25,7 +26,7 @@ public class HuffmanZipperImpl implements IZipper {
     }
 
     @Override
-    public void compression(String source, String destination) throws IOException {
+    public void compression(String source, String destination) throws IOException, ExecutionException, InterruptedException {
         Byte[] b=rw.read(source);
         hc.compress(b,destination);
     }

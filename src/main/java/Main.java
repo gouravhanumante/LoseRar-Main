@@ -4,16 +4,17 @@ import com.capillary.IZipper;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.concurrent.ExecutionException;
 
 public class Main {
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         IZipper loseRar=new HuffmanZipperImpl();
 //        System.out.println(System.currentTimeMillis());
         long val1=System.currentTimeMillis();
 
-        loseRar.compression("/home/sarthakjain/IdeaProjects/files/bigfile.txt",
+        loseRar.compression("/home/sarthakjain/IdeaProjects/files/orgFile.txt",
                 "/home/sarthakjain/IdeaProjects/files/compressedTest.txt");
 //
 //

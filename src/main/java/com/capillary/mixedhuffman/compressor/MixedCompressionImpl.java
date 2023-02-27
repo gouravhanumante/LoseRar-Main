@@ -6,14 +6,16 @@ package com.capillary.mixedhuffman.compressor;
 import com.capillary.huffman.compressor.*;
 import com.capillary.huffman.mydefines.HuffmanData;
 import com.capillary.huffman.mydefines.Node;
-import name.finsterwalder.fileutils.FileUtils;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class MixedCompressionImpl implements ICompressor
 {
@@ -30,8 +32,10 @@ public class MixedCompressionImpl implements ICompressor
 
     ICompressionUtils compressionUtils=new CompressionUtils();
 
+
+    Helper helper=new Helper();
     @Override
-    public <T> void compress(Byte[] fileData, String destination) throws IOException {
+    public <T> void compress(Byte[] fileData, String destination) throws IOException, ExecutionException, InterruptedException {
         Map<String,String> temp=new HashMap<>();
         if (fileData.length==0){
             huffmanData =new HuffmanData( fileData, (byte) 0);
@@ -45,20 +49,48 @@ public class MixedCompressionImpl implements ICompressor
         System.out.println(val2 - val1 + "createWordsArray");
 
         val1 = System.currentTimeMillis();
-        CalcBestPercent calcBestPercent = new CalcBestPercent();
 
 
-        //here
-        Map<String, Integer> freqMap = calcBestPercent.getBestPercent(words);
+
+        //map creation normal
+        Map<String,Integer> initialMap=mapCreationUtils.getFrequencyMap(words);
+
+
+        //multi
+        ExecutorService service= Executors.newFixedThreadPool(4);
+        CalcBestPercent[] tasks=new CalcBestPercent[4];
+        List<Future<Long>> sizes=new ArrayList<>();
+
+
+        for (int i=0;i<4;i++){
+            tasks[i]=new CalcBestPercent(words,initialMap,i);
+            sizes.add(service.submit(tasks[i]));
+        }
+
+        Long bestSize=Long.MAX_VALUE;
+        Map<String,Integer> bestMap = null;
+
+        for (int i=0;i<4;i++){
+            long size=sizes.get(i).get().longValue();
+            if (size<bestSize){
+                bestSize=size;
+                bestMap=tasks[i].getResultFreqMap();
+            }
+        }
+        service.shutdown();
+
+        System.out.println("bestSize:"+bestSize);
+
+
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "CalcBestPercent");
 
         val1 = System.currentTimeMillis();
-        String[] finalFileData=mixedCreationUtils.getFinalFileData(words,freqMap);
+        String[] finalFileData=mixedCreationUtils.getFinalFileData(words,bestMap);
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "getFinalFileData after best percent");
 
-        Node root=treeCreationUtils.createTreeUsingMinHeap(freqMap);
+        Node root=treeCreationUtils.createTreeUsingMinHeap(bestMap);
         val1 = System.currentTimeMillis();
         System.out.println(val1 - val2 + "createTreeUsingMinHeap");
 
@@ -66,11 +98,13 @@ public class MixedCompressionImpl implements ICompressor
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "buildLookupRecursive");
 
+        System.out.println("best map size h yaha par "+helper.getMapSize(bestMap));
+
         huffmanData = compressionUtils.createCompressedArray(finalFileData,huffmanCodes);
         val1 = System.currentTimeMillis();
         System.out.println(val1 - val2 + "createCompressedArray");
 
-        writeData.write(destination, huffmanData, freqMap);
+        writeData.write(destination, huffmanData, bestMap);
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "write");
 

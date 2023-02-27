@@ -10,11 +10,12 @@ import com.capillary.mixedhuffman.compressor.MixedCompressionImpl;
 import com.capillary.mixedhuffman.decompressor.MixedDecompressionImpl;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 public class MixedZipperImpl implements IZipper
 {
     @Override
-    public void compression(String source, String destination) {
+    public void compression(String source, String destination) throws ExecutionException, InterruptedException {
         IReadData r=new ReadDataImpl();
         ICompressor compressor=new MixedCompressionImpl();
 

@@ -6,24 +6,14 @@ import com.capillary.mixedhuffman.MixedZipperImpl;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.concurrent.ExecutionException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        Map<String ,Integer> mp1=new HashMap<>();
-        Map<String ,Integer> mp2=new HashMap<>();
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
 
-
-
-//        mp2.merge(mp1,mp2);
-
-        System.out.println(mp2);
-
-        String gsource="/Users/gouravhanumante/IdeaProjects/Test Files/orgFile.txt";
-        String gcompressed="/Users/gouravhanumante/IdeaProjects/Test Files/compressedTest.txt";
+        String gsource="/Users/gouravhanumante/IdeaProjects/Test Files/input.txt";
+        String gcompressed="/Users/gouravhanumante/IdeaProjects/Test Files/mobile.txt";
         String gdestination="/Users/gouravhanumante/IdeaProjects/Test Files/result.txt";
 
 //        String gsource="/home/sarthakjain/IdeaProjects/files/input.txt";

@@ -16,7 +16,7 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
 {
     ITreeCreationUtils treeCreationUtils=new TreeCreationUtils();
     @Override
-    public Map<String, Integer> getFrequencyMap(String[] words,double per) {
+    public Map<String, Integer> getFrequencyMap(String[] words) {
 
         long val1=System.currentTimeMillis();
         Map<String,Integer> freqMap= (Map<String, Integer>) treeCreationUtils.createFrequencyMap(words);
@@ -28,7 +28,7 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
 
         long val3=System.currentTimeMillis();
 
-        Map<String,Integer> finalFrequencyMap=createFinalFrequencyMap(words,sortedFreqMap,per);
+//        Map<String,Integer> finalFrequencyMap=createFinalFrequencyMap(words,sortedFreqMap,per);
 //        for(Map.Entry<String,Integer> entry:finalFrequencyMap.entrySet())
 //        {
 //            System.out.println("Key = ");
@@ -36,7 +36,7 @@ public class MapCreationUtilsImpl implements IMapCreationUtils
         long val4=System.currentTimeMillis();
 //        System.out.println(val4-val3+"createFinalFrequencyMap");
 
-        return finalFrequencyMap;
+        return sortedFreqMap;
 
     }
 
