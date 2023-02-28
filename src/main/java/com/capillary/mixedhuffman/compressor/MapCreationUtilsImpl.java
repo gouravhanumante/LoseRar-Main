@@ -1,21 +1,14 @@
 package com.capillary.mixedhuffman.compressor;
-
-import com.capillary.huffman.compressor.CompressionUtils;
-import com.capillary.huffman.compressor.ICompressionUtils;
-import com.capillary.huffman.compressor.ITreeCreationUtils;
 import com.capillary.huffman.compressor.TreeCreationUtils;
-import com.capillary.huffman.mydefines.Node;
+
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 public class MapCreationUtilsImpl implements IMapCreationUtils
 {
-    ITreeCreationUtils treeCreationUtils=new TreeCreationUtils();
+    TreeCreationUtils treeCreationUtils=new TreeCreationUtils();
     @Override
     public Map<String, Integer> getFrequencyMap(String[] words) throws ExecutionException, InterruptedException {
 

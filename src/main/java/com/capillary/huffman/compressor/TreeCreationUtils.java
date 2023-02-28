@@ -1,6 +1,6 @@
 package com.capillary.huffman.compressor;
 
-import com.capillary.huffman.mydefines.MinPriorityQueue;
+//import com.capillary.huffman.mydefines.Node;
 import com.capillary.huffman.mydefines.Node;
 
 import java.util.HashMap;
@@ -37,8 +37,6 @@ public class TreeCreationUtils implements ITreeCreationUtils, Callable {
 
     @Override
     public Node createTreeUsingMinHeap(Map<String, Integer> freq) {
-
-//        MinPriorityQueue<Node> pq=new MinPriorityQueue<>();
         PriorityQueue<Node> pq = new PriorityQueue<>(freq.size());
         for (Map.Entry<String, Integer> entry:freq.entrySet()){
             pq.add(new Node( entry.getKey(),entry.getValue()));
