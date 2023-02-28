@@ -67,7 +67,7 @@ public class CompressionUtils implements ICompressionUtils{
                     temp.delete(0,temp.length());
                 }else if (temp.length()>8){
                     huffcodesList.add(temp.substring(0,8));
-                    temp.delete(0,9);
+                    temp.delete(0,8);
                 }
             }
             else{
@@ -79,7 +79,8 @@ public class CompressionUtils implements ICompressionUtils{
                         temp.delete(0,temp.length());
                     }else if (temp.length()>8){
                         huffcodesList.add(temp.substring(0,8));
-                        temp.delete(0,9);
+                        temp.delete(0,8);
+//                        temp = new StringBuilder(temp.substring(8));
                     }
 
                 }
