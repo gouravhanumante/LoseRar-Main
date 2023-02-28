@@ -97,7 +97,7 @@ public class CalcBestPercent implements Callable {
             long bytesize=getSize(freqMap,huffmanCodes);
             long mapsize=getMapSize(freqMap);
             long ans=bytesize+mapsize;
-
+            System.out.println("Map SIze at" + i +"%" + mapsize);
             if (ans<minSize){
                 minSize=ans;
                 resultFreqMap=freqMap;

@@ -54,9 +54,16 @@ public class CompressionUtils implements ICompressionUtils{
     public HuffmanData createCompressedArray(String[] fileData, Map<String , String> lookupMap) {
 
         StringBuilder sb = new StringBuilder();
-
+//        StringBuilder sb2 = new StringBuilder();
+//        int i = fileData.length;
         for (String b : fileData){
+            if(lookupMap.containsKey(b))
                 sb.append(lookupMap.get(b));
+            else{
+                for(char c: b.toCharArray()){
+                    sb.append(lookupMap.get(String.valueOf(c)));
+                }
+            }
         }
         int length=(sb.length()+7)/8;
 //        Byte[] huffCodeBytes = new Byte[length];
@@ -66,10 +73,7 @@ public class CompressionUtils implements ICompressionUtils{
         for (int i = 0; i < sb.length(); i += 8) {
             String s;
             if (i + 8 >= sb.length()){
-
                 s = sb.substring(i);
-
-
                 for (int j=0;j<s.length();j++){
                     if (s.charAt(j)=='0'){
                         counter++;
@@ -77,7 +81,6 @@ public class CompressionUtils implements ICompressionUtils{
                 }
 
             }
-
             else s = sb.substring(i, i + 8);
             huffCodeBytes[idx] = (byte) Integer.parseInt(s , 2);
             idx++;

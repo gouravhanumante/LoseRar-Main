@@ -33,7 +33,7 @@ public class MixedCompressionImpl implements ICompressor
     ICompressionUtils compressionUtils=new CompressionUtils();
 
 
-    Helper helper=new Helper();
+//    Helper helper=new Helper();
     @Override
     public void compress(Byte[] fileData, String destination) throws IOException, ExecutionException, InterruptedException {
         Map<String,Integer> temp=new HashMap<>();
@@ -88,7 +88,7 @@ public class MixedCompressionImpl implements ICompressor
         System.out.println(val2 - val1 + "CalcBestPercent");
 
         val1 = System.currentTimeMillis();
-        String[] finalFileData=mixedCreationUtils.getFinalFileData(words,bestMap);
+//        String[] finalFileData=mixedCreationUtils.getFinalFileData(words,bestMap);
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "getFinalFileData after best percent");
 
@@ -100,12 +100,11 @@ public class MixedCompressionImpl implements ICompressor
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "buildLookupRecursive");
 
-        System.out.println("best map size h yaha par "+helper.getMapSize(bestMap));
+//        System.out.println("best map size h yaha par "+helper.getMapSize(bestMap));
 
-        huffmanData = compressionUtils.createCompressedArray(finalFileData,huffmanCodes);
+        huffmanData = compressionUtils.createCompressedArray(words,huffmanCodes);
         val1 = System.currentTimeMillis();
         System.out.println(val1 - val2 + "createCompressedArray");
-
         writeData.write(destination, huffmanData, bestMap);
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "write");
