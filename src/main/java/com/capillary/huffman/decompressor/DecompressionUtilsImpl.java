@@ -72,7 +72,7 @@ public class DecompressionUtilsImpl implements IDecompressionUtils{
     }
 
     public String convertBytetoBitString(byte[] bytes, byte counter) {
-        StringBuilder sb=new StringBuilder();
+        StringBuilder sb= new StringBuilder();
         int i=0;
         for (i=0;i<bytes.length-1;i++){
             sb.append(String.format("%8s", Integer.toBinaryString(bytes[i] & 0xFF)).replace(' ', '0'));

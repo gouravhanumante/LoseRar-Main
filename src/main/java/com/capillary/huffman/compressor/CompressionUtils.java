@@ -10,10 +10,7 @@ public class CompressionUtils implements ICompressionUtils{
     @Override
     public  Node createHuffmanTree(String[] fileData) {
         ITreeCreationUtils utils=new TreeCreationUtils();
-
-
         Map<String, Integer> mp=  utils.createFrequencyMap(fileData);
-
 //        System.out.println("mppp " +mp);
         return utils.createTreeUsingMinHeap(mp);
     }
@@ -22,12 +19,8 @@ public class CompressionUtils implements ICompressionUtils{
     public  Map<String, String> buildLookupRecursive(Node root) {
         Map<String,String> mp=new HashMap<>();
         if (root==null) return mp;
-
         buildLookupRecursive(root,"",mp);
         return mp;
-
-
-
     }
 
 //    @Override
@@ -55,7 +48,7 @@ public class CompressionUtils implements ICompressionUtils{
 
     public HuffmanData createCompressedArray(String[] fileData, Map<String , String> lookupMap) {
 
-        int size=getListLength(lookupMap);
+//        int size=getListLength(lookupMap);
         List<Byte> compressedArray=new ArrayList<>();
 
         String str = "",curr="";
@@ -83,7 +76,6 @@ public class CompressionUtils implements ICompressionUtils{
                 curr=str.substring(0,8);
                 str=str.substring(8);
                 compressedArray.add((byte)Integer.parseInt(curr,2));
-
             }
         }
         if (!str.isEmpty()){

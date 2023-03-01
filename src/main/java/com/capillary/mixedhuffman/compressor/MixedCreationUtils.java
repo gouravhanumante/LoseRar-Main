@@ -1,12 +1,4 @@
 package com.capillary.mixedhuffman.compressor;
-
-import com.capillary.huffman.compressor.CompressionUtils;
-import com.capillary.huffman.compressor.ICompressionUtils;
-import com.capillary.huffman.compressor.ITreeCreationUtils;
-import com.capillary.huffman.compressor.TreeCreationUtils;
-import com.capillary.huffman.mydefines.HuffmanData;
-import com.capillary.huffman.mydefines.Node;
-
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -37,25 +29,50 @@ public class MixedCreationUtils {
         return ans.toArray(ans.toArray(new String[ans.size()]));
     }
 
+
     public String[] createWordsArray(Byte[] fileData) {
         int j=0;
 
         ArrayList<String> words = new ArrayList<>();
-
-        StringBuilder sb = new StringBuilder();
-        for (byte b : fileData) {
-            if ((b <= 90 && b >= 65) || (b <= 122 && b >= 97) || (b <= 48 && b >= 57)) {
-//            if(Character.isLetter((char) b)){
-                sb.append((char) b);
+//        StringBuilder sb = new StringBuilder();
+        String sb = "";
+        for(int i=0; i<fileData.length;) {
+            if((fileData[i] <= 90 && fileData[i] >= 65) || (fileData[i] <= 122 && fileData[i] >= 97)){
+                while ((fileData[i] <= 90 && fileData[i] >= 65) || (fileData[i] <= 122 && fileData[i] >= 97)){
+                    byte b = fileData[i];
+                    sb +=  (char) b;
+                    i++;
+                }
+            } else if(fileData[i] <= 48 && fileData[i] >= 57){
+                if (sb.length() != 0)
+                    words.add(sb);
+                sb = "";
+                while (fileData[i] <= 48 && fileData[i] >= 57){
+                    byte b = fileData[i];
+                    sb +=  (char) b;
+                    i++;
+                }
             } else {
                 if (sb.length() != 0)
-                    words.add(sb.toString());
-
-                sb.delete(0, sb.length());
-                words.add(String.valueOf((char) b));
+                    words.add(sb);
+                sb = "";
+                words.add(String.valueOf((char) (byte)fileData[i]));
+                i++;
             }
         }
-        if (sb.length()!=0) words.add(sb.toString());
+        if(sb.length() != 0) words.add(sb);
+//        for (byte b : fileData) {
+//            if ((b <= 90 && b >= 65) || (b <= 122 && b >= 97) || (b <= 48 && b >= 57)) {
+////            if(Character.isLetter((char) b)){
+//                sb += ((char) b);
+//            } else {
+//                if (sb.length() != 0)
+//                    words.add(sb);
+//                sb = "";
+//                words.add(String.valueOf((char) b));
+//            }
+//        }
+//        if (sb.length() != 0) words.add(sb);
 
         String ans[] = new String[words.size()];
         int k = 0;

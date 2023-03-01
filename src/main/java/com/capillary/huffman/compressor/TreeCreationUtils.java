@@ -41,7 +41,6 @@ public class TreeCreationUtils implements ITreeCreationUtils, Callable {
         for (Map.Entry<String, Integer> entry:freq.entrySet()){
             pq.add(new Node( entry.getKey(),entry.getValue()));
         }
-
         Node root = null;
         if (pq.size() == 1) {
             Node leftSideNode = pq.peek();
@@ -62,7 +61,6 @@ public class TreeCreationUtils implements ITreeCreationUtils, Callable {
             root = parent;
             pq.add(parent);
         }
-
         return root;
     }
 

@@ -16,7 +16,7 @@ public class Main {
 //        String gcompressed="/Users/gouravhanumante/IdeaProjects/Test Files/mobile.txt";
 //        String gdestination="/Users/gouravhanumante/IdeaProjects/Test Files/result.txt";
 
-        String gsource="/home/sarthakjain/IdeaProjects/files/bigfile.txt";
+        String gsource="/home/sarthakjain/IdeaProjects/files/input.txt";
         String gcompressed="/home/sarthakjain/IdeaProjects/files/compressedInputfile.txt";
         String gdestination="/home/sarthakjain/IdeaProjects/files/decompressedInput.txt";
 

@@ -57,12 +57,12 @@ public class MixedCompressionImpl implements ICompressor
 
 
         //multi
-        ExecutorService service= Executors.newFixedThreadPool(1);
-        CalcBestPercent[] tasks=new CalcBestPercent[1];
+        ExecutorService service= Executors.newFixedThreadPool(5);
+        CalcBestPercent[] tasks=new CalcBestPercent[5];
         List<Future<Long>> sizes=new ArrayList<>();
         long st=System.currentTimeMillis();
 
-        for (int i=0;i<1;i++){
+        for (int i=0;i<5;i++){
             tasks[i]=new CalcBestPercent(words,initialMap,i);
             sizes.add(service.submit(tasks[i]));
         }
@@ -71,7 +71,7 @@ public class MixedCompressionImpl implements ICompressor
         Long bestSize=Long.MAX_VALUE;
         Map<String,Integer> bestMap = null;
 
-        for (int i=0;i<1;i++){
+        for (int i=0;i<5;i++){
             long size=sizes.get(i).get().longValue();
             if (size<bestSize){
                 bestSize=size;

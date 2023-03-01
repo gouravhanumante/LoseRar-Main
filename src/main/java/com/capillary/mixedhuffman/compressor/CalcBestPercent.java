@@ -75,7 +75,7 @@ public class CalcBestPercent implements Callable {
 
         double bestPercent = 100;
 
-        for(int i=(start*25); i<(start*25)+25; i++) {
+        for(int i=(start*20); i<(start*20)+20; i++) {
             if (i==0) continue;
 
 
