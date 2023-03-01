@@ -24,9 +24,9 @@ public class DecompressionUtilsImpl implements IDecompressionUtils{
 
 
         List<String> list=new ArrayList<>();
+        String curr="";
 
         for (int i=0;i<s.length();i++){
-            String curr="";
             curr+=s.charAt(i);
             if (map.containsKey(curr)){
                 list.add(map.get(curr));

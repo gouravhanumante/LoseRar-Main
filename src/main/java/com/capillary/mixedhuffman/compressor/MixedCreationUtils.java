@@ -37,17 +37,17 @@ public class MixedCreationUtils {
 //        StringBuilder sb = new StringBuilder();
         String sb = "";
         for(int i=0; i<fileData.length;) {
-            if((fileData[i] <= 90 && fileData[i] >= 65) || (fileData[i] <= 122 && fileData[i] >= 97)){
-                while ((fileData[i] <= 90 && fileData[i] >= 65) || (fileData[i] <= 122 && fileData[i] >= 97)){
+            if(i<fileData.length && ((fileData[i] <= 90 && fileData[i] >= 65) || (fileData[i] <= 122 && fileData[i] >= 97))){
+                while (i<fileData.length && ((fileData[i] <= 90 && fileData[i] >= 65) || (fileData[i] <= 122 && fileData[i] >= 97))){
                     byte b = fileData[i];
                     sb +=  (char) b;
                     i++;
                 }
-            } else if(fileData[i] <= 48 && fileData[i] >= 57){
+            } else if(i<fileData.length && (fileData[i] <= 48 && fileData[i] >= 57)){
                 if (sb.length() != 0)
                     words.add(sb);
                 sb = "";
-                while (fileData[i] <= 48 && fileData[i] >= 57){
+                while (i<fileData.length && (fileData[i] <= 48 && fileData[i] >= 57)){
                     byte b = fileData[i];
                     sb +=  (char) b;
                     i++;

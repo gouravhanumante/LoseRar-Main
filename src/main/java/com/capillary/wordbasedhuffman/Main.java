@@ -23,7 +23,7 @@ public class Main {
         IZipper zipper=new MixedZipperImpl();
         long val1=System.currentTimeMillis();
 
-//        zipper.compression(gsource,gcompressed);
+        zipper.compression(gsource,gcompressed);
         long val2=System.currentTimeMillis();
 
 
