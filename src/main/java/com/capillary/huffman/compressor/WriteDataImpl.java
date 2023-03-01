@@ -30,7 +30,7 @@ public class WriteDataImpl implements IWriteData {
             for (Byte x:huffmanData.getHuffmanByte()){
                 ans[l++]= x;
             }
-            System.out.println(ans.length+"lol");
+            //System.out.println(ans.length+"lol");
 //            lookupMap.
 
 //             lookupMap.get('\n');
@@ -50,13 +50,13 @@ public class WriteDataImpl implements IWriteData {
 
             objectOutputStream.writeObject(ans);
 
-            if (s.equals("Byte")){
-                objectOutputStream.writeObject((byte)0);
-//                oStream.write((byte)0);
-            }else{
-                objectOutputStream.writeObject((byte)1);
-//            oStream.write((byte)1);
-            }
+//            if (s.equals("Byte")){
+//                objectOutputStream.writeObject((byte)0);
+////                oStream.write((byte)0);
+//            }else{
+//                objectOutputStream.writeObject((byte)1);
+////            oStream.write((byte)1);
+//            }
             objectOutputStream.writeObject(writableMap);
 //            oStream.write(huffmanData.getCounter());
             objectOutputStream.writeObject(huffmanData.getCounter());

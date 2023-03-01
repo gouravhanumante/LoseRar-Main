@@ -20,7 +20,7 @@ public class MixedZipperImpl implements IZipper
         ICompressor compressor=new MixedCompressionImpl();
 
         Byte[] fileData=r.read(source);
-        System.out.println(fileData.length);
+        //System.out.println(fileData.length);
         try {
             compressor.compress(fileData,destination);
         } catch (IOException e) {

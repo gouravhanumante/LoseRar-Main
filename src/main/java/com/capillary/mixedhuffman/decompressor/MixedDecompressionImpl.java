@@ -41,7 +41,7 @@ public class MixedDecompressionImpl implements IDecompressor {
                 return;
             }
 
-            byte type=(byte)objectInputStream.readObject();
+//            byte type=(byte)objectInputStream.readObject();
 
             Map<String,Integer> lookupMap = (Map<String, Integer>) objectInputStream.readObject();
 

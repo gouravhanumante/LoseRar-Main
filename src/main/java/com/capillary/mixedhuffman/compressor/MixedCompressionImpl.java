@@ -46,7 +46,7 @@ public class MixedCompressionImpl implements ICompressor
         long val1 = System.currentTimeMillis();
         String[] words = mixedCreationUtils.createWordsArray(fileData);
         long val2 = System.currentTimeMillis();
-        System.out.println(val2 - val1 + "createWordsArray");
+        //System.out.println(val2 - val1 + "createWordsArray");
 
         val1 = System.currentTimeMillis();
 
@@ -80,31 +80,31 @@ public class MixedCompressionImpl implements ICompressor
         }
         service.shutdown();
         long et=System.currentTimeMillis();
-        System.out.println("st-et:" +(et-st));
-        System.out.println("bestSize:"+bestSize);
+        //System.out.println("st-et:" +(et-st));
+//        System.out.println("bestSize:"+bestSize);
 
 
         val2 = System.currentTimeMillis();
-        System.out.println(val2 - val1 + "CalcBestPercent");
+//        System.out.println(val2 - val1 + "CalcBestPercent");
 
         val1 = System.currentTimeMillis();
 //        String[] finalFileData=mixedCreationUtils.getFinalFileData(words,bestMap);
         val2 = System.currentTimeMillis();
-        System.out.println(val2 - val1 + "getFinalFileData after best percent");
+//        System.out.println(val2 - val1 + "getFinalFileData after best percent");
 
         Node root=treeCreationUtils.createTreeUsingMinHeap(bestMap);
         val1 = System.currentTimeMillis();
-        System.out.println(val1 - val2 + "createTreeUsingMinHeap");
+//        System.out.println(val1 - val2 + "createTreeUsingMinHeap");
 
         Map<String,String> huffmanCodes=compressionUtils.buildLookupRecursive(root);
         val2 = System.currentTimeMillis();
-        System.out.println(val2 - val1 + "buildLookupRecursive");
+//        System.out.println(val2 - val1 + "buildLookupRecursive");
 
 //        System.out.println("best map size h yaha par "+helper.getMapSize(bestMap));
 
         huffmanData = compressionUtils.createCompressedArray(words,huffmanCodes);
         val1 = System.currentTimeMillis();
-        System.out.println(val1 - val2 + "createCompressedArray");
+//        System.out.println(val1 - val2 + "createCompressedArray");
         writeData.write(destination, huffmanData, bestMap);
         val2 = System.currentTimeMillis();
         System.out.println(val2 - val1 + "write");

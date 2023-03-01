@@ -2,6 +2,7 @@ package com.capillary.huffman.decompressor;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 public class HuffmanDecompressionImpl implements IDecompressor{
     IDecompressionUtils util;
@@ -33,23 +34,25 @@ public class HuffmanDecompressionImpl implements IDecompressor{
                 return;
             }
 
-            byte type=(byte)objectInputStream.readObject();
+//            byte type=(byte)objectInputStream.readObject();
 
-            Map<T,String> lookupMap;
+            Map<String,String> lookupMap=new HashMap<>();
 
-            if (type==0){
-                lookupMap= (Map<T, String>) objectInputStream.readObject();
-            }else{
-               lookupMap= (Map<T, String>) objectInputStream.readObject();
-            }
+//            if (type==0){
+//                lookupMap= (Map<T, String>) objectInputStream.readObject();
+//            }else{
+//               lookupMap= (Map<T, String>) objectInputStream.readObject();
+//            }
 
             byte counter=(byte) objectInputStream.readObject();
 
 
 
 //            byte[] finalRes=getDecompressedData(huffmanBytes,lookupMap,counter);
-
+            long val1=System.currentTimeMillis();
             byte[] finalRes= util.decompress(huffmanBytes,lookupMap,counter);
+            long val2=System.currentTimeMillis();
+            System.out.println("decompress: "+(val2-val1));
 //            System.out.println(Arrays.toString(finalRes));
 
 //            System.out.println(Arrays.toString(finalRes));

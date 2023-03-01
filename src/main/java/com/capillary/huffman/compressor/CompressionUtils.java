@@ -112,7 +112,7 @@ public class CompressionUtils implements ICompressionUtils{
     public HuffmanData c(String[] fileData, Map<String , String> lookupMap) {
         /////
         int size=getListLength(lookupMap);
-        System.out.println(size);
+//        System.out.println(size);
 //        ArrayList<Byte> huffcodesList=new ArrayList<String>(size);
 
         Byte[] huffCodeBytes = new Byte[size];

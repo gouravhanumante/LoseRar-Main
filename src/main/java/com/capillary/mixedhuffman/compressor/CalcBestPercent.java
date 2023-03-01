@@ -75,29 +75,29 @@ public class CalcBestPercent implements Callable {
 
         double bestPercent = 100;
 
-        for(int i=(start*20); i<(start*20)+20; i++) {
+        for(int i=(start*20); i<(start*20)+20; i+=10) {
             if (i==0) continue;
 
 
             long val1=System.currentTimeMillis();
             Map<String,Integer> freqMap=mapCreationUtils.createFinalFrequencyMap(words,sortedMap,(i/100.0));
             long val2=System.currentTimeMillis();
-            System.out.println(val2-val1+" getFrequencyMap");
+            //System.out.println(val2-val1+" getFrequencyMap");
 
 
             Node root=treeCreationUtils.createTreeUsingMinHeap(freqMap);
             val1=System.currentTimeMillis();
-            System.out.println(val1-val2+" createTreeUsingMinHeap");
+            //System.out.println(val1-val2+" createTreeUsingMinHeap");
 
             Map<String,String> huffmanCodes=compressionUtils.buildLookupRecursive(root);
             val2=System.currentTimeMillis();
-            System.out.println(val2-val1+" buildLookupRecursive");
+            //System.out.println(val2-val1+" buildLookupRecursive");
 
 
             long bytesize=getSize(freqMap,huffmanCodes);
             long mapsize=getMapSize(freqMap);
             long ans=bytesize+mapsize;
-            System.out.println("Map SIze at" + i +"%" + mapsize);
+            //System.out.println("Map SIze at" + i +"%" + mapsize);
             if (ans<minSize){
                 minSize=ans;
                 resultFreqMap=freqMap;
@@ -105,11 +105,11 @@ public class CalcBestPercent implements Callable {
 
             }
 
-            System.out.println("for "+i+"%: "+ ans);
+           // System.out.println("for "+i+"%: "+ ans);
 
         }
 
-        System.out.println("Best Percent:" +bestPercent + ", MinFileSize:" + minSize);
+        //System.out.println("Best Percent:" +bestPercent + ", MinFileSize:" + minSize);
 
         return minSize;
 

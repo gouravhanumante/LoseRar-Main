@@ -12,21 +12,22 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
 
-//        String gsource="/Users/gouravhanumante/IdeaProjects/Test Files/hmm.txt";
-//        String gcompressed="/Users/gouravhanumante/IdeaProjects/Test Files/mobile.txt";
-//        String gdestination="/Users/gouravhanumante/IdeaProjects/Test Files/result.txt";
+        String gsource="/Users/gouravhanumante/IdeaProjects/Test Files/bigfile.txt";
+        String gcompressed="/Users/gouravhanumante/IdeaProjects/Test Files/mobile.txt";
+        String gdestination="/Users/gouravhanumante/IdeaProjects/Test Files/result.txt";
 
-        String gsource="/home/sarthakjain/IdeaProjects/files/input.txt";
-        String gcompressed="/home/sarthakjain/IdeaProjects/files/compressedInputfile.txt";
-        String gdestination="/home/sarthakjain/IdeaProjects/files/decompressedInput.txt";
+//        String gsource="/home/sarthakjain/IdeaProjects/files/input.txt";
+//        String gcompressed="/home/sarthakjain/IdeaProjects/files/compressedInputfile.txt";
+//        String gdestination="/home/sarthakjain/IdeaProjects/files/decompressedInput.txt";
 
         IZipper zipper=new MixedZipperImpl();
         long val1=System.currentTimeMillis();
 
-        zipper.compression(gsource,gcompressed);
+//        zipper.compression(gsource,gcompressed);
         long val2=System.currentTimeMillis();
 
 
+        System.out.println("Compression done");
         zipper.decompression(gcompressed,gdestination);
         long val3=System.currentTimeMillis();
         System.out.println("compression: " +(val2-val1));
