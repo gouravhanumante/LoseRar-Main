@@ -76,7 +76,7 @@ public class CalcBestPercent implements Callable {
         double bestPercent = 100;
 
         for(int i=(start*20); i<(start*20)+20; i+=10) {
-            if (i==0) continue;
+//            if (i==0) continue;
 
 
             long val1=System.currentTimeMillis();

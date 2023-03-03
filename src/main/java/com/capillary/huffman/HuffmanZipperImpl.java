@@ -9,6 +9,8 @@ import com.capillary.huffman.decompressor.HuffmanDecompressionImpl;
 import com.capillary.huffman.decompressor.IDecompressor;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.concurrent.ExecutionException;
 
 public class HuffmanZipperImpl implements IZipper {
@@ -26,7 +28,7 @@ public class HuffmanZipperImpl implements IZipper {
 //    }
 
     @Override
-    public void compression(String source, String destination) throws IOException, ExecutionException, InterruptedException {
+    public void compression(String source, String destination) throws IOException, ExecutionException, InterruptedException, SQLException, NoSuchAlgorithmException, ClassNotFoundException {
         Byte[] b=rw.read(source);
         hc.compress(b,destination);
     }

@@ -1,5 +1,9 @@
 package com.capillary.mixedhuffman.decompressor;
 
+import com.capillary.database.connect.CRUDImpl;
+import com.capillary.database.connect.Connect;
+import com.capillary.database.connect.ICRUD;
+import com.capillary.database.connect.IDBConnect;
 import com.capillary.huffman.compressor.CompressionUtils;
 import com.capillary.huffman.compressor.ICompressionUtils;
 import com.capillary.huffman.compressor.ITreeCreationUtils;
@@ -14,6 +18,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +50,8 @@ public class MixedDecompressionImpl implements IDecompressor {
 
 //            byte type=(byte)objectInputStream.readObject();
 
-            Map<String,Integer> lookupMap = (Map<String, Integer>) objectInputStream.readObject();
+            String key=(String)objectInputStream.readObject();
+//            Map<String,Integer> lookupMap = (Map<String, Integer>) objectInputStream.readObject();
 
 //            if (type==0){
 //                lookupMap= (Map<String, Integer>) objectInputStream.readObject();
@@ -53,8 +61,27 @@ public class MixedDecompressionImpl implements IDecompressor {
 
             byte counter=(byte) objectInputStream.readObject();
 
+            //playground
+            IDBConnect createConnection=new Connect();
+            Connection connection=createConnection.connect();
+
+
+
+            ICRUD crud=new CRUDImpl();
+            Statement stm=connection.createStatement();
+
+            Map<String,Integer> freqMap= crud.retreiveFreqMap(key,stm);
+
+
+
+
+            //
+
+
+
+
             ITreeCreationUtils treeCreationUtils=new TreeCreationUtils();
-            Node root = treeCreationUtils.createTreeUsingMinHeap(lookupMap);
+            Node root = treeCreationUtils.createTreeUsingMinHeap(freqMap);
             ICompressionUtils compressionUtils=new CompressionUtils();
             Map<String, String> huffCodes = compressionUtils.buildLookupRecursive(root);
 
