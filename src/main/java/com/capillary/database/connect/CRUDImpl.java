@@ -24,6 +24,7 @@ public class CRUDImpl implements ICRUD{
 
     public Map<String, Integer> retreiveFreqMap(String key, Statement stm) throws SQLException, IOException, ClassNotFoundException {
         String qry="select * from fileTable where md5=\""+key+"\"";
+//        String qry="delete * from fileTable;";
         System.out.println(qry);
         ResultSet rs=stm.executeQuery(qry);
         rs.next();

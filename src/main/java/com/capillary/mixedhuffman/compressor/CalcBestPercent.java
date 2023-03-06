@@ -75,8 +75,11 @@ public class CalcBestPercent implements Callable {
 
         double bestPercent = 100;
 
-        for(int i=(start*20); i<(start*20)+20; i+=10) {
+//        if (start!=5) return;
+        for(int i=(start*20); i<=(start*20)+20; i+=10) {
+            System.out.println(i+"%");
 //            if (i==0) continue;
+            if (i!=100) continue;
 
 
             long val1=System.currentTimeMillis();
@@ -97,6 +100,7 @@ public class CalcBestPercent implements Callable {
             long bytesize=getSize(freqMap,huffmanCodes);
             long mapsize=getMapSize(freqMap);
             long ans=bytesize+mapsize;
+            System.out.println("ans: "+ans+" for %"+i);
             //System.out.println("Map SIze at" + i +"%" + mapsize);
             if (ans<minSize){
                 minSize=ans;

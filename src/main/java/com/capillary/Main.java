@@ -17,14 +17,14 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException, SQLException, NoSuchAlgorithmException, ClassNotFoundException {
 
-//        String gsource="/Users/gouravhanumante/IdeaProjects/Test Files/bigfile.txt";
-//        String gcompressed="/Users/gouravhanumante/IdeaProjects/Test Files/mobile.txt";
-//        String gdestination="/Users/gouravhanumante/IdeaProjects/Test Files/result.txt";
+        String gsource="/Users/gouravhanumante/IdeaProjects/Test Files/bigfile.txt";
+        String gcompressed="/Users/gouravhanumante/IdeaProjects/Test Files/mobile.txt";
+        String gdestination="/Users/gouravhanumante/IdeaProjects/Test Files/result.txt";
         Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-        String gsource="/home/sarthakjain/IdeaProjects/files/input.txt";
-        String gcompressed="/home/sarthakjain/IdeaProjects/files/compressedInputfile.txt";
-        String gdestination="/home/sarthakjain/IdeaProjects/files/decompressedInput.txt";
+//        String gsource="/home/sarthakjain/IdeaProjects/files/input.txt";
+//        String gcompressed="/home/sarthakjain/IdeaProjects/files/compressedInputfile.txt";
+//        String gdestination="/home/sarthakjain/IdeaProjects/files/decompressedInput.txt";
 
 
 
