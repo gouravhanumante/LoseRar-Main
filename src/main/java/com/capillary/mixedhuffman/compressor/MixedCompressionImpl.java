@@ -30,21 +30,12 @@ public class MixedCompressionImpl implements ICompressor
 {
     HuffmanData huffmanData;
     IWriteData writeData =new WriteDataImpl();
-
     IMapCreationUtils mapCreationUtils=new MapCreationUtilsImpl();
-
     ITreeCreationUtils treeCreationUtils=new TreeCreationUtils();
-
     MixedCreationUtils mixedCreationUtils =new MixedCreationUtils();
-
-
-
     ICompressionUtils compressionUtils=new CompressionUtils();
     ICRUD crud = new CRUDImpl();
     GenerateHash generateHash = new GenerateHash();
-
-
-//    Helper helper=new Helper();
     @Override
     public void compress(Byte[] fileData, String destination) throws IOException, ExecutionException, InterruptedException, SQLException, NoSuchAlgorithmException, ClassNotFoundException {
         Map<String,Integer> temp=new HashMap<>();
@@ -53,13 +44,10 @@ public class MixedCompressionImpl implements ICompressor
             writeData.write(destination, huffmanData,temp,"");
             return;
         }
-        //playgroudn
         String[] words = mixedCreationUtils.createWordsArray(fileData);
         IDBConnect createConnection = new Connect();
         Connection connection = createConnection.connect();
         Statement s = connection.createStatement();
-//        ResultSet rs = s.executeQuery("use huffmanDB");
-//        ResultSet rs = s.executeQuery("select * from fileTable");
         Map<String, Integer> bestMap = null;
         bestMap = checkIfMapIsPresentInDB(fileData,connection);
         if(bestMap == null) {
@@ -87,14 +75,6 @@ public class MixedCompressionImpl implements ICompressor
             String key = generateHash.getHashValue(fileData);
             crud.storeFreqMap(bestMap,connection,key);
         }
-
-        //
-
-
-
-
-
-
 
         long val1 = System.currentTimeMillis();
 //        String[] words = mixedCreationUtils.createWordsArray(fileData);

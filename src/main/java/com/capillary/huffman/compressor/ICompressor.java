@@ -6,5 +6,5 @@ import java.sql.SQLException;
 import java.util.concurrent.ExecutionException;
 
 public interface ICompressor {
-    <T> void compress(Byte[] b, String destination) throws IOException, ExecutionException, InterruptedException, SQLException, NoSuchAlgorithmException, ClassNotFoundException;
+     void compress(Byte[] b, String destination) throws IOException, ExecutionException, InterruptedException, SQLException, NoSuchAlgorithmException, ClassNotFoundException;
 }

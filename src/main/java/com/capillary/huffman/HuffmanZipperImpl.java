@@ -2,6 +2,7 @@ package com.capillary.huffman;
 
 import com.capillary.IZipper;
 //import com.capillary.huffman.compressor.HuffmanCompressionImpl;
+import com.capillary.huffman.compressor.HuffmanCompressionImpl;
 import com.capillary.huffman.compressor.ICompressor;
 import com.capillary.huffman.compressor.IReadData;
 import com.capillary.huffman.compressor.ReadDataImpl;
@@ -21,11 +22,11 @@ public class HuffmanZipperImpl implements IZipper {
 //        this.hc=hc;
 //        this.rw=rw;
 //    }
-//    public HuffmanZipperImpl(){
-//        rw=new ReadDataImpl();
-//        hc=new HuffmanCompressionImpl();
-//
-//    }
+    public HuffmanZipperImpl(){
+        rw=new ReadDataImpl();
+        hc=new HuffmanCompressionImpl();
+
+    }
 
     @Override
     public void compression(String source, String destination) throws IOException, ExecutionException, InterruptedException, SQLException, NoSuchAlgorithmException, ClassNotFoundException {

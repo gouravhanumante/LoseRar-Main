@@ -6,4 +6,5 @@ import java.util.Map;
 
 public interface IWriteData {
     void write(String destination, HuffmanData huffmanData, Map<String,Integer> huffCodes,String key);
+
 }

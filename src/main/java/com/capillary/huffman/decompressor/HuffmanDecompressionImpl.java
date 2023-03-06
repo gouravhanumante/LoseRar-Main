@@ -21,10 +21,8 @@ public class HuffmanDecompressionImpl implements IDecompressor{
             ObjectInputStream objectInputStream=new ObjectInputStream(iStream);
 
             OutputStream oStream=new FileOutputStream(destination);
-//            ObjectOutputStream objectOutputStream=new ObjectOutputStream(oStream);
 
             byte[] huffmanBytes= (byte[]) objectInputStream.readObject();
-//            System.out.println(Arrays.toString(huffmanBytes));
 
             if (huffmanBytes.length==1 && huffmanBytes[0]==-1){
                 oStream.write(0);
@@ -34,15 +32,8 @@ public class HuffmanDecompressionImpl implements IDecompressor{
                 return;
             }
 
-//            byte type=(byte)objectInputStream.readObject();
 
-            Map<String,String> lookupMap=new HashMap<>();
-
-//            if (type==0){
-//                lookupMap= (Map<T, String>) objectInputStream.readObject();
-//            }else{
-//               lookupMap= (Map<T, String>) objectInputStream.readObject();
-//            }
+            Map<String,Integer> freqMap = (Map<String, Integer>) objectInputStream.readObject();
 
             byte counter=(byte) objectInputStream.readObject();
 
@@ -50,7 +41,7 @@ public class HuffmanDecompressionImpl implements IDecompressor{
 
 //            byte[] finalRes=getDecompressedData(huffmanBytes,lookupMap,counter);
             long val1=System.currentTimeMillis();
-            byte[] finalRes= util.decompress(huffmanBytes,lookupMap,counter);
+            byte[] finalRes= util.decompress(huffmanBytes,freqMap,counter);
             long val2=System.currentTimeMillis();
             System.out.println("decompress: "+(val2-val1));
 //            System.out.println(Arrays.toString(finalRes));
@@ -69,7 +60,6 @@ public class HuffmanDecompressionImpl implements IDecompressor{
 //            System.out.println(Arrays.toString(finalRes));
             oStream.write(finalRes);
 //            o
-
 //            objectOutputStream.close();
             objectInputStream.close();
             oStream.close();

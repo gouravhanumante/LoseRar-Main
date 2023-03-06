@@ -51,62 +51,16 @@ public class MixedDecompressionImpl implements IDecompressor {
 //            byte type=(byte)objectInputStream.readObject();
 
             String key=(String)objectInputStream.readObject();
-//            Map<String,Integer> lookupMap = (Map<String, Integer>) objectInputStream.readObject();
-
-//            if (type==0){
-//                lookupMap= (Map<String, Integer>) objectInputStream.readObject();
-//            }else{
-//                lookupMap= (Map<String, Integer>) objectInputStream.readObject();
-//            }
-
             byte counter=(byte) objectInputStream.readObject();
-
-            //playground
             IDBConnect createConnection=new Connect();
             Connection connection=createConnection.connect();
 
-
-
             ICRUD crud=new CRUDImpl();
             Statement stm=connection.createStatement();
-
             Map<String,Integer> freqMap= crud.retreiveFreqMap(key,stm);
-
-
-
-
-            //
-
-
-
-
-            ITreeCreationUtils treeCreationUtils=new TreeCreationUtils();
-            Node root = treeCreationUtils.createTreeUsingMinHeap(freqMap);
-            ICompressionUtils compressionUtils=new CompressionUtils();
-            Map<String, String> huffCodes = compressionUtils.buildLookupRecursive(root);
-
-
-//            byte[] finalRes=getDecompressedData(huffmanBytes,lookupMap,counter);
             IDecompressionUtils util = new DecompressionUtilsImpl();
-            byte[] finalRes= util.decompress(huffmanBytes,huffCodes,counter);
-//            System.out.println(Arrays.toString(finalRes));
-
-//            System.out.println(Arrays.toString(finalRes));
-
-
-
-//            T[] fr=new T[finalRes.length];
-//            int i=0;
-//            for (T b:finalRes){
-//                fr[i++]=b;
-//            }
-
-
-//            System.out.println(Arrays.toString(finalRes));
+            byte[] finalRes= util.decompress(huffmanBytes,freqMap,counter);
             oStream.write(finalRes);
-//            o
-
-//            objectOutputStream.close();
             objectInputStream.close();
             oStream.close();
             iStream.close();

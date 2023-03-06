@@ -20,14 +20,14 @@
 //    // functionName_WhenSomethingHappens_ThenThisShouldHappen
 //    @Test
 //    public void createFrequencyMap_WhenStandardInputWithMultipleDifferentCharactersIsPassed_ThenFrequencyCountShouldBeRight(){
-//        Byte[] bytes={97,97,97,98,98,99,10};
-//        Map<Byte,Integer> expected=new HashMap<>();
-//        expected.put((byte) 97,3);
-//        expected.put((byte) 98,2);
-//        expected.put((byte) 99,1);
-//        expected.put((byte) 10,1);
+//        String[] fileData={"a","a","a","b","b","c","\n"};
+//        Map<String,Integer> expected=new HashMap<>();
+//        expected.put("a",3);
+//        expected.put("b",2);
+//        expected.put("c",1);
+//        expected.put("\n",1);
 //
-//        Map<Byte,Integer> result= (Map<Byte, Integer>) utils.createFrequencyMap(bytes);
+//        Map<String,Integer> result= utils.createFrequencyMap(fileData);
 //
 //        Assert.assertEquals(expected,result);
 //    }

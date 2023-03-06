@@ -57,8 +57,11 @@ public class WriteDataImpl implements IWriteData {
 //                objectOutputStream.writeObject((byte)1);
 ////            oStream.write((byte)1);
 //            }
-//            objectOutputStream.writeObject(writableMap);
-            objectOutputStream.writeObject(key);
+            if(key == null) {
+                objectOutputStream.writeObject(writableMap);
+            } else {
+                objectOutputStream.writeObject(key);
+            }
 //            oStream.write(huffmanData.getCounter());
             objectOutputStream.writeObject(huffmanData.getCounter());
             oStream.close();
@@ -70,4 +73,6 @@ public class WriteDataImpl implements IWriteData {
 
 
     }
+
+
 }

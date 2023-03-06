@@ -1,12 +1,22 @@
 package com.capillary.huffman.decompressor;
 
+import com.capillary.huffman.compressor.CompressionUtils;
+import com.capillary.huffman.compressor.ICompressionUtils;
+import com.capillary.huffman.compressor.ITreeCreationUtils;
+import com.capillary.huffman.compressor.TreeCreationUtils;
+import com.capillary.huffman.mydefines.Node;
+
 import java.util.*;
 
 public class DecompressionUtilsImpl implements IDecompressionUtils{
+    ICompressionUtils compressionUtils = new CompressionUtils();
+    ITreeCreationUtils utils = new TreeCreationUtils();
     @Override
-    public byte[] decompress(byte[] huffmanBytes, Map<String, String> lookupMap, byte counter) {
+    public byte[] decompress(byte[] huffmanBytes, Map<String, Integer> freqMap, byte counter) {
 
 //        System.out.println(Arrays.toString(huffmanBytes));
+        Node root = utils.createTreeUsingMinHeap(freqMap);
+        Map<String, String> lookupMap = compressionUtils.buildLookupRecursive(root);
         long v1=System.currentTimeMillis();
         String s=convertBytetoBitString(huffmanBytes,counter);
         long v2=System.currentTimeMillis();

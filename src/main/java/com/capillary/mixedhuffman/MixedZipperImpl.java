@@ -4,7 +4,6 @@ import com.capillary.IZipper;
 import com.capillary.huffman.compressor.ICompressor;
 import com.capillary.huffman.compressor.IReadData;
 import com.capillary.huffman.compressor.ReadDataImpl;
-import com.capillary.huffman.decompressor.HuffmanDecompressionImpl;
 import com.capillary.huffman.decompressor.IDecompressor;
 import com.capillary.mixedhuffman.compressor.MixedCompressionImpl;
 import com.capillary.mixedhuffman.decompressor.MixedDecompressionImpl;
@@ -24,9 +23,6 @@ public class MixedZipperImpl implements IZipper
 
         Byte[] fileData=r.read(source);
 
-
-
-        //System.out.println(fileData.length);
         try {
             compressor.compress(fileData,destination);
         } catch (IOException e) {
@@ -38,7 +34,7 @@ public class MixedZipperImpl implements IZipper
 
     @Override
     public void decompression(String source, String destination) {
-        MixedDecompressionImpl decompress=new MixedDecompressionImpl();
+        IDecompressor decompress=new MixedDecompressionImpl();
         decompress.decompress(source,destination);
     }
 
