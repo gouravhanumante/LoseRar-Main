@@ -31,6 +31,7 @@ public class Main {
 
         IZipper zipper=new MixedZipperImpl();
 //        IZipper zipper=new HuffmanZipperImpl();
+        //dajkbjefahsdv
         long val1=System.currentTimeMillis();
 
         zipper.compression(gsource,gcompressed);
